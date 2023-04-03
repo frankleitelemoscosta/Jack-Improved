@@ -1,4 +1,4 @@
-#include "mat.h"
+#include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/TERCEIRO PERÍODO/AEDS/Actives/Active-Three-AEDS/Jack-Improved/filesh/mat.h"
 
 
 void GenerateMatrix(Matrix *mat){
@@ -20,7 +20,7 @@ void GenerateMatrix(Matrix *mat){
 void SetMatrixSignature(){
 	FILE *f;
 
-	if ((f = fopen("dataset/input.data", "w")) == NULL){
+	if ((f = fopen("dataset/data.data", "w")) == NULL){
 		printf("file could not be opened");
     	exit(-1);
     }
@@ -35,7 +35,7 @@ void SaveMatrix(Matrix *mat){
 	
 	FILE *f;
 
-	if ((f = fopen("dataset/input.data", "a")) == NULL){
+	if ((f = fopen("dataset/data.data", "a")) == NULL){
 		printf("file could not be opened");
     	exit(-1);
     }
@@ -49,6 +49,30 @@ void SaveMatrix(Matrix *mat){
 	}
 	fprintf(f,"\n");
 	fclose(f);
+}
+
+void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix)
+{
+	FILE *file;
+
+	file = fopen("dataset/data.data","r");
+	if(file == NULL){
+		printf("file is not open\n");
+		return;
+	}
+
+	Row = (int*)malloc(1*sizeof(int));
+
+	fscanf(file,"%d",Row);
+
+	for(int i = 1 ; i < 3 ; i++)
+	{
+		fscanf(file,"%d",QuantitiofMatrix);
+	}
+
+	fclose(file);
+
+
 }
 
 
