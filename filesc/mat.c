@@ -58,7 +58,7 @@ void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatr
 	file = fopen("dataset/data.data","r");
 	if(file == NULL){
 		printf("file is not open\n");
-		return;
+		return; 
 	}
 
 	Row = (int*)malloc(1*sizeof(int));
