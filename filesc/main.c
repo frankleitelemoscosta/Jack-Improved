@@ -13,7 +13,7 @@ int main(){
 	for(int i=0; i<NUMAT; i++)
 		SaveMatrix(&m);
 	
-	FillingintheVector(&m,contador,Row,QuantitiofMatrix);
+	FillingintheVector(&m,contador,Row,QuantitiofMatrix,vet);
 
 	return 0;
 }

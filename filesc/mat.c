@@ -1,5 +1,5 @@
 #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/TERCEIRO PERÍODO/AEDS/Actives/Active-Three-AEDS/Jack-Improved/filesh/mat.h"
-
+#include<math.h>
 
 void GenerateMatrix(Matrix *mat){
 	int data = 0;
@@ -51,7 +51,7 @@ void SaveMatrix(Matrix *mat){
 	fclose(f);
 }
 
-void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix)
+void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix,int *vet)
 {
 	FILE *file;
 
@@ -61,14 +61,22 @@ void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatr
 		return; 
 	}
 
-	Row = (int*)malloc(1*sizeof(int));
+	//alocate the space for the variable row
+		Row = (int*)malloc(1*sizeof(int));
+	//finished
 
-	fscanf(file,"%d",Row);
+	//read the quantiti of row
+		fscanf(file,"%d",Row);
+	//finished
 
-	for(int i = 1 ; i < 3 ; i++)
-	{
-		fscanf(file,"%d",QuantitiofMatrix);
-	}
+	//read the quantiti of matrix
+		for(int i = 1 ; i < 3 ; i++)
+		{
+			fscanf(file,"%d",QuantitiofMatrix);
+		}
+	//finished
+
+	vet = (int*)malloc(((*QuantitiofMatrix)*(pow(2,*Row)))*sizeof(int));
 
 	fclose(file);
 
