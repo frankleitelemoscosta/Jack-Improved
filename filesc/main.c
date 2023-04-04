@@ -4,16 +4,17 @@ int main(){
 	srand( (unsigned)time(NULL) );
 
 	Matrix m;
-	int *vet;
-	int *contador;
+	int *contador = 0;
 	int *Row;
 	int *QuantitiofMatrix;
 
+	contador = (int *)malloc(1*sizeof(int));
+
 	SetMatrixSignature();
 	for(int i=0; i<NUMAT; i++)
-		SaveMatrix(&m);
-	
-	FillingintheVector(&m,contador,Row,QuantitiofMatrix,vet);
+		SaveMatrix(&m,contador);
+
+	//FillingintheVector(&m,contador,Row,QuantitiofMatrix);
 
 	return 0;
 }

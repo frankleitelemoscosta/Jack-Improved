@@ -21,7 +21,7 @@ typedef struct Matrix{
 
 void GenerateMatrix(Matrix *mat);
 void SetMatrixSignature();
-void SaveMatrix(Matrix *mat);
-void FillingintheVector(Matrix *mat,int *contador,int *Row,int *QuantitiofMatrix,int *vet);
+void SaveMatrix(Matrix *mat, int *contador);
+void FillingintheVector(Matrix *mat,int *contador,int *Row,int *QuantitiofMatrix);
 
 #endif

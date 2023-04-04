@@ -1,5 +1,6 @@
 #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/TERCEIRO PERÍODO/AEDS/Actives/Active-Three-AEDS/Jack-Improved/filesh/mat.h"
 #include<math.h>
+#include<string.h>
 
 void GenerateMatrix(Matrix *mat){
 	int data = 0;
@@ -20,7 +21,7 @@ void GenerateMatrix(Matrix *mat){
 void SetMatrixSignature(){
 	FILE *f;
 
-	if ((f = fopen("dataset/data.data", "w")) == NULL){
+	if ((f = fopen("dataset/data1.data", "w")) == NULL){
 		printf("file could not be opened");
     	exit(-1);
     }
@@ -31,14 +32,31 @@ void SetMatrixSignature(){
 
 }
 
-void SaveMatrix(Matrix *mat){
+void SaveMatrix(Matrix *mat,int *contador){
 	
-	FILE *f;
+	
+	signed char letter[5];
+	int valor;
+	signed char name[20] = "dataset/data";
 
-	if ((f = fopen("dataset/data.data", "a")) == NULL){
+	*contador = *contador + 1;
+
+	valor = *contador;
+
+	sprintf(letter,"%d",valor);
+
+	strcat(name,letter);
+	strcat(name,".data");
+
+	printf(" [%s]\n",name);
+
+
+	FILE *f = fopen(name,"a");
+		if (f==NULL){
 		printf("file could not be opened");
     	exit(-1);
-    }
+		}
+	
 
     GenerateMatrix(mat);
 
@@ -51,9 +69,12 @@ void SaveMatrix(Matrix *mat){
 	fclose(f);
 }
 
-void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix,int *vet)
+/*void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix,int *vet)
 {
 	FILE *file;
+	int *element;
+
+	element = (int *)malloc(1*sizeof(int));
 
 	file = fopen("dataset/data.data","r");
 	if(file == NULL){
@@ -64,6 +85,8 @@ void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatr
 	//alocate the space for the variable row
 		Row = (int*)malloc(1*sizeof(int));
 	//finished
+
+	QuantitiofMatrix = (int*)malloc(1*sizeof(int));
 
 	//read the quantiti of row
 		fscanf(file,"%d",Row);
@@ -76,12 +99,32 @@ void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatr
 		}
 	//finished
 
-	vet = (int*)malloc(((*QuantitiofMatrix)*(pow(2,*Row)))*sizeof(int));
+	//filling the matrix
+		for(int i = 0 ; i < *Row ; i ++)
+		{
+			for(int j = 0 ; j < *Row ; j ++)
+			{
+				fscanf(file,"%d",*element);
+				mat->Matrix[i][j].val = *element;
+			}
+		}
+	//finished
 
-	fclose(file);
+	//filling the matrix
+		for(int i = 0 ; i < *Row ; i ++)
+		{
+			for(int j = 0 ; j < *Row ; j ++)
+			{
+				printf("[%d]",mat->Matrix[i][j].val);
+			}
+			printf("\n");
+		}
+	//finished
 
 
-}
+}*/
+
+//fim do código
 
 
 
