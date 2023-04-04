@@ -32,18 +32,17 @@ void SetMatrixSignature(){
 
 }
 
-void SaveMatrix(Matrix *mat,int *contador){
+void SaveMatrix(Matrix *mat,int *counter){
 	
-	
-	signed char letter[5];
-	int valor;
-	signed char name[20] = "dataset/data";
+	//local variables
+		signed char letter[5];
+		signed char name[20] = "dataset/data";
+	//finished the variables
 
-	*contador = *contador + 1;
 
-	valor = *contador;
+	*counter = *counter + 1;
 
-	sprintf(letter,"%d",valor);
+	sprintf(letter,"%d",*counter);
 
 	strcat(name,letter);
 	strcat(name,".data");
@@ -56,6 +55,15 @@ void SaveMatrix(Matrix *mat,int *contador){
 		printf("file could not be opened");
     	exit(-1);
 		}
+
+	if(*counter != 1)
+	{
+		f = fopen(name,"w");
+		if (f==NULL){
+		printf("file could not be opened");
+    	exit(-1);
+		}
+	}
 	
 
     GenerateMatrix(mat);
@@ -69,60 +77,95 @@ void SaveMatrix(Matrix *mat,int *contador){
 	fclose(f);
 }
 
-/*void FillingintheVector(Matrix *mat, int *contador, int *Row,int *QuantitiofMatrix,int *vet)
+void GetSize(int *Order, int *QuantitiofMatrix,FILE **file)
 {
-	FILE *file;
-	int *element;
-
-	element = (int *)malloc(1*sizeof(int));
-
-	file = fopen("dataset/data.data","r");
-	if(file == NULL){
-		printf("file is not open\n");
-		return; 
-	}
-
-	//alocate the space for the variable row
-		Row = (int*)malloc(1*sizeof(int));
-	//finished
-
-	QuantitiofMatrix = (int*)malloc(1*sizeof(int));
 
 	//read the quantiti of row
-		fscanf(file,"%d",Row);
+		fscanf(*file,"%d",Order);
 	//finished
 
 	//read the quantiti of matrix
 		for(int i = 1 ; i < 3 ; i++)
 		{
-			fscanf(file,"%d",QuantitiofMatrix);
+			fscanf(*file,"%d",QuantitiofMatrix);
 		}
 	//finished
+}
 
+void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *QuantitiofMatrix)
+{
+	//local variables
+		FILE *file;
+		signed char letter[5];
+		signed char name[20] = "dataset/data";
+		int value;
+	//finished the variables
+
+
+	*counter_matrix = *counter_matrix + 1;
+	printf("%d\n",*counter_matrix);
+
+	sprintf(letter,"%d",*counter_matrix);
+
+
+	strcat(name,letter);
+	strcat(name,".data");
+
+	file = fopen(name,"r");
+	if(file == NULL){
+		printf("file is not open\n");
+		return; 
+	}
+
+	
+	if(*counter_matrix == 1) 
+	{
+		//alocate the space for the variable order
+		Order = (int*)malloc(1*sizeof(int));
+		//finished
+
+		QuantitiofMatrix = (int*)malloc(1*sizeof(int));
+		GetSize(Order,QuantitiofMatrix,&file);
+		printf("[%d]",*Order);
+		printf("[%d]\n",*QuantitiofMatrix);
+	}
+
+	int cont = 0;
+
+	printf("\n started ff \n");
 	//filling the matrix
-		for(int i = 0 ; i < *Row ; i ++)
+	for (int i = 0; i < *Order; i++)
+	{
+		for (int j = 0; j < *Order; j++)
 		{
-			for(int j = 0 ; j < *Row ; j ++)
-			{
-				fscanf(file,"%d",*element);
-				mat->Matrix[i][j].val = *element;
-			}
+			fscanf(file,"%ls",&value);
+			//printf("[%c]",value);
+			//printf("(%d)\n",*Order);
+			mat->Matrix[i][j].val = value;
+			cont++;
+			printf("\n linha: %d | col : %d",i, j);
 		}
-	//finished
+		printf("  -  %d ",i);
+		printf("\n");
+	}
+	//finished filling in the matrix
+	printf("\n\n - %d - \n\n",cont);
+	printf("a partir daqui se printa a matriz\n");
 
-	//filling the matrix
-		for(int i = 0 ; i < *Row ; i ++)
+
+	for (int i = 0; i < *Order; i++)
+	{
+		for (int j = 0; j < *Order; j++)
 		{
-			for(int j = 0 ; j < *Row ; j ++)
-			{
-				printf("[%d]",mat->Matrix[i][j].val);
-			}
-			printf("\n");
+			printf(" [%c]",mat->Matrix[i][j].val);
 		}
-	//finished
+		printf("\n");
+	}
+	printf("\n\n\n\n");
 
+	fclose(file);
 
-}*/
+}
 
 //fim do código
 
