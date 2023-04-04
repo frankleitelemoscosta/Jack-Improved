@@ -98,7 +98,7 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 		FILE *file;
 		signed char letter[5];
 		signed char name[20] = "dataset/data";
-		int value;
+		char value;
 	//finished the variables
 
 
@@ -107,49 +107,43 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 
 	sprintf(letter,"%d",*counter_matrix);
 
-
 	strcat(name,letter);
 	strcat(name,".data");
 
+	printf("%s",name);
+	
+	
+	
 	file = fopen(name,"r");
 	if(file == NULL){
 		printf("file is not open\n");
 		return; 
 	}
 
-	
 	if(*counter_matrix == 1) 
 	{
-		//alocate the space for the variable order
-		Order = (int*)malloc(1*sizeof(int));
-		//finished
 
 		QuantitiofMatrix = (int*)malloc(1*sizeof(int));
 		GetSize(Order,QuantitiofMatrix,&file);
 		printf("[%d]",*Order);
 		printf("[%d]\n",*QuantitiofMatrix);
 	}
+	
 
-	int cont = 0;
-
-	printf("\n started ff \n");
 	//filling the matrix
 	for (int i = 0; i < *Order; i++)
 	{
+		
 		for (int j = 0; j < *Order; j++)
 		{
-			fscanf(file,"%ls",&value);
-			//printf("[%c]",value);
-			//printf("(%d)\n",*Order);
-			mat->Matrix[i][j].val = value;
-			cont++;
-			printf("\n linha: %d | col : %d",i, j);
+			
+			fscanf(file,"%s",&mat->Matrix[i][j].val);
+			
 		}
-		printf("  -  %d ",i);
-		printf("\n");
 	}
 	//finished filling in the matrix
-	printf("\n\n - %d - \n\n",cont);
+	
+	
 	printf("a partir daqui se printa a matriz\n");
 
 

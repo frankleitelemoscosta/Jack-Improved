@@ -6,12 +6,14 @@ int main(){
 	Matrix m;
 	int *counter = 0;
 	int *counter_matrix = 0;
-	int *Row;
+	int *Order;
 	int *QuantitiofMatrix;
 
-	counter = (int *)malloc(1*sizeof(int));
+		counter = (int *)malloc(1*sizeof(int));
 
-	counter_matrix = (int *)malloc(1*sizeof(int));
+		counter_matrix = (int *)malloc(1*sizeof(int));
+
+		Order = (int*)malloc(1*sizeof(int));
 
 	SetMatrixSignature();
 	for(int i=0; i<NUMAT; i++)
@@ -19,9 +21,12 @@ int main(){
 
 	for (int i = 0; i < 2; i++)
 	{
-		FillingintheMatrix(&m,counter_matrix,Row,QuantitiofMatrix);
+		FillingintheMatrix(&m,counter_matrix,Order,QuantitiofMatrix);
 	}
 	
+	free(Order);
+	free(counter);
+	free(counter_matrix);
 
 	return 0;
 }
