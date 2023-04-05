@@ -8,6 +8,9 @@ int main(){
 	int *counter_matrix = 0;
 	int *Order;
 	int *QuantitiofMatrix;
+	int stop = 0;
+	signed short int StartRow;
+	signed short int StartColunm;
 
 		counter = (int *)malloc(1*sizeof(int));
 
@@ -15,18 +18,30 @@ int main(){
 
 		Order = (int*)malloc(1*sizeof(int));
 
+		QuantitiofMatrix = (int*)malloc(1*sizeof(int));
+
 	SetMatrixSignature();
 	for(int i=0; i<NUMAT; i++)
 		SaveMatrix(&m,counter);
 
-	for (int i = 0; i < 2; i++)
+	while(stop != 1)
 	{
 		FillingintheMatrix(&m,counter_matrix,Order,QuantitiofMatrix);
+
+		printf("What Row you wanna start?");
+		scanf("%d",&StartRow);
+
+		printf("What Colunm you wanna start?");
+		scanf("%d",&StartColunm);
+
+		Walking(m,StartRow,StartColunm);
+
 	}
 	
 	free(Order);
 	free(counter);
 	free(counter_matrix);
+	free(QuantitiofMatrix);
 
 	return 0;
 }

@@ -24,5 +24,6 @@ void SetMatrixSignature();
 void SaveMatrix(Matrix *mat, int *counter);
 void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *QuantitiofMatrix);
 void GetSize(int *Order, int *QuantitiofMatrix,FILE **file);
+void Walking(Matrix m,signed short int StartRow, signed short int SartColunm);
 
 #endif

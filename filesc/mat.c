@@ -103,17 +103,12 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 
 
 	*counter_matrix = *counter_matrix + 1;
-	printf("%d\n",*counter_matrix);
 
 	sprintf(letter,"%d",*counter_matrix);
 
 	strcat(name,letter);
 	strcat(name,".data");
 
-	printf("%s",name);
-	
-	
-	
 	file = fopen(name,"r");
 	if(file == NULL){
 		printf("file is not open\n");
@@ -122,30 +117,22 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 
 	if(*counter_matrix == 1) 
 	{
-
-		QuantitiofMatrix = (int*)malloc(1*sizeof(int));
 		GetSize(Order,QuantitiofMatrix,&file);
-		printf("[%d]",*Order);
-		printf("[%d]\n",*QuantitiofMatrix);
 	}
 	
 
 	//filling the matrix
 	for (int i = 0; i < *Order; i++)
 	{
-		
 		for (int j = 0; j < *Order; j++)
 		{
-			
 			fscanf(file,"%s",&mat->Matrix[i][j].val);
-			
 		}
 	}
 	//finished filling in the matrix
 	
 	
 	printf("a partir daqui se printa a matriz\n");
-
 
 	for (int i = 0; i < *Order; i++)
 	{
@@ -155,9 +142,15 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 		}
 		printf("\n");
 	}
-	printf("\n\n\n\n");
 
 	fclose(file);
+
+}
+
+void Walking(Matrix m,signed short int StartRow, signed short int StartColunm)
+{
+
+	
 
 }
 
