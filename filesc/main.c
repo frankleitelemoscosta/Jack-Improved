@@ -29,10 +29,10 @@ int main(){
 		FillingintheMatrix(&m,counter_matrix,Order,QuantitiofMatrix);
 
 		printf("What Row you wanna start?");
-		scanf("%d",&StartRow);
+		scanf("%hd",&StartRow);
 
 		printf("What Colunm you wanna start?");
-		scanf("%d",&StartColunm);
+		scanf("%hd",&StartColunm);
 
 		Walking(m,StartRow,StartColunm);
 

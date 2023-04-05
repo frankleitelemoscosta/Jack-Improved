@@ -18,10 +18,6 @@ Para preencher os arquivos foi utilizado o <a href="https://github.com/mpiress/G
 As matrizes foram gravadas em arquivos distintos, para que fosse possível extrair uma matriz de cada vez, e colocar apenas uma na mémoria RAM para ser trabalhada.
 </p>
 
-<br>
-<br>
-<br>
-
 <img src="image/harrdware.png" alt="" style="width: 50%">
 
 <p style = "text-align = justify">
@@ -29,8 +25,20 @@ A RAM opera em velocidades muito mais altas em comparação com HDDs ou SSDs, po
 </p>
 
 <p style = "text-align = justify">
-Porem ela é limitada, e lembrando que existem diversos outros processos sendo executados na CPU e armazenados na RAM, sendo assim para ganhar eficiência em um determinado programa em qualquer computador. 
+Porem ela é limitada, e lembrando que existem diversos outros processos sendo executados na CPU e armazenados na RAM, sendo assim para ganhar eficiência neste projeto em qualquer computador é inteligente trabalhar com os dados de uma matriz de cada vez. 
 </p>
+
+<p style = "text-align = justify">
+Alem disso para que o programa se tornasse um pouco mais leve em todo o código e para que fosse possível manipular os mesmos dados em diferentes arquivos, foi utilizado um ponteiro para acessar a posição de memória onde a struct da matriz estava, visto que essa matriz é acessada em varios pontos do código e em varios arquivos.
+</p>
+
+
+<img src="image/Meme-Homem-Aranha-No-Way-Home.jpg" alt="" style="width: 50%">
+
+<p style = "text-align = justify">
+O ponteiro é uma variável que aponta a uma posição de memória, enquanto um objeto é uma variável que armazena uma posição e o conteúdo armazenado nessa variável, mostrando se mais caro computacionalmente.
+</p>
+
 
 <h2>REFERÊNCIAS</h2>
 
