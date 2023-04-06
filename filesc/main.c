@@ -11,6 +11,7 @@ int main(){
 	int stop = 0;
 	signed short int StartRow;
 	signed short int StartColunm;
+	signed short int lives = 10;
 
 		counter = (int *)malloc(1*sizeof(int));
 
@@ -34,7 +35,7 @@ int main(){
 		printf("What Colunm you wanna start?");
 		scanf("%hd",&StartColunm);
 
-		Walking(m,StartRow,StartColunm);
+		Walking(&m,StartRow,StartColunm,&stop,&lives);
 
 	}
 	

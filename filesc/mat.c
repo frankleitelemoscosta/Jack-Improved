@@ -1,6 +1,7 @@
 #include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/TERCEIRO PERÍODO/AEDS/Actives/Active-Three-AEDS/Jack-Improved/filesh/mat.h"
 #include<math.h>
 #include<string.h>
+#include<time.h>
 
 void GenerateMatrix(Matrix *mat){
 	int data = 0;
@@ -47,9 +48,6 @@ void SaveMatrix(Matrix *mat,int *counter){
 	strcat(name,letter);
 	strcat(name,".data");
 
-	printf(" [%s]\n",name);
-
-
 	FILE *f = fopen(name,"a");
 		if (f==NULL){
 		printf("file could not be opened");
@@ -65,7 +63,6 @@ void SaveMatrix(Matrix *mat,int *counter){
 		}
 	}
 	
-
     GenerateMatrix(mat);
 
 	for (int i=0;i<MAXROWS;i++){
@@ -90,6 +87,18 @@ void GetSize(int *Order, int *QuantitiofMatrix,FILE **file)
 			fscanf(*file,"%d",QuantitiofMatrix);
 		}
 	//finished
+}
+
+void PrintMatrix(int *Order,Matrix *mat)
+{
+	for (int i = 0; i < *Order; i++)
+	{
+		for (int j = 0; j < *Order; j++)
+		{
+			printf(" [%c]",mat->Matrix[i][j].val);
+		}
+		printf("\n");
+	}
 }
 
 void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *QuantitiofMatrix)
@@ -130,27 +139,109 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 		}
 	}
 	//finished filling in the matrix
-	
-	
-	printf("a partir daqui se printa a matriz\n");
 
-	for (int i = 0; i < *Order; i++)
-	{
-		for (int j = 0; j < *Order; j++)
-		{
-			printf(" [%c]",mat->Matrix[i][j].val);
-		}
-		printf("\n");
-	}
+	PrintMatrix(Order,mat);
 
 	fclose(file);
 
 }
 
-void Walking(Matrix m,signed short int StartRow, signed short int StartColunm)
+void TheChoose(signed short int *Colunm,signed short int *Row)
+{
+	srand(time(0));
+	signed short int escolha_linha;
+	signed short int escolha_coluna ;
+	signed short int choose_Colunm;
+	signed short int choose_Row;
+
+	escolha_coluna = rand()%2;
+
+	escolha_linha = rand()%2;
+
+	choose_Colunm = rand()%2;
+
+	choose_Row = rand()%2;
+
+	if(choose_Colunm == 1)
+	{
+		escolha_coluna *= (-1);
+	}
+
+	if(choose_Row == 1)
+	{
+		escolha_linha *= (-1);
+	}
+	
+	*Colunm = escolha_coluna + *Colunm;
+
+	sleep(1);
+
+	*Row = escolha_linha + *Row;
+
+	if(*Colunm < 1)
+	{
+		*Colunm += 1;
+	}
+
+	if(*Row < 1)
+	{
+		*Row += 1;
+	}
+
+
+	printf("Row:(%d)\n",*Row);
+	printf("Colunm:(%d)\n",*Colunm);
+
+
+}
+
+void Walking(Matrix *m,signed short int StartRow, signed short int StartColunm,int *stop, signed short int *lives)
 {
 
-	
+	signed short int Row;
+	signed short int Colunm;
+	signed short int Counter = 0;
+	int Order = 7;
+
+	Colunm = StartColunm;
+	Row = StartRow;
+
+	while(*stop != 1){
+		TheChoose(&Colunm,&Row);
+
+		while(*stop != 1)
+		{
+			if(m->Matrix[Row][Colunm].val != '#')
+			{
+				*stop = 1;
+			}
+			else{
+				Colunm = StartColunm;
+				Row = StartRow;
+				TheChoose(&Colunm,&Row);
+			}
+
+		}
+		*stop = 0;
+		
+		if(m->Matrix[Row][Colunm].val == '*')
+		{
+			*lives -= 1;
+		}
+		else if(m->Matrix[Row][Colunm].val > 0){
+			Counter++;
+			m->Matrix[Row][Colunm].val -= 1;
+		}
+
+		if(Counter == 4)
+		{
+			*lives += 1;
+			Counter = 0;
+		}
+		PrintMatrix(&Order,m);
+
+		getchar();
+	}
 
 }
 
