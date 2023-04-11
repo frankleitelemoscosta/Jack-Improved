@@ -32,6 +32,8 @@ Porem ela é limitada, e lembrando que existem diversos outros processos sendo e
 Alem disso para que o programa se tornasse um pouco mais leve em todo o código e para que fosse possível manipular os mesmos dados em diferentes arquivos, foi utilizado um ponteiro para acessar a posição de memória onde a struct da matriz estava, visto que essa matriz é acessada em varios pontos do código e em varios arquivos.
 </p>
 
+<h2>CONCLUSÃO</h2>
+
 
 <img src="image/Meme-Homem-Aranha-No-Way-Home.jpg" alt="" style="width: 50%">
 
@@ -40,9 +42,16 @@ O ponteiro é uma variável que aponta a uma posição de memória, enquanto um 
 </p>
 
 
+
 <h2>REFERÊNCIAS</h2>
 
 <ul>
     <li>ChatGPT.
     <li>Algoritmos: Teoria e Prática, Pag: 7 e 8.
 </ul>
+
+<h2>AUTOR</h2>
+
+Frank Leite Lemos Costa
+
+<a href="https://www.linkedin.com/in/frank-leite-6a6a84198/">Linkedin</a>

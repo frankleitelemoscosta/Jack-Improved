@@ -1,4 +1,4 @@
-#include "/home/frank/Documentos/TODOS OS ARQUIVOS(ATIVIDADES, LIVROS, ETC)DA FACULDADE/TERCEIRO PERÍODO/AEDS/Actives/Active-Three-AEDS/Jack-Improved/filesh/mat.h"
+#include "../filesh/mat.h"
 
 int main(){
 	srand( (unsigned)time(NULL) );
@@ -9,9 +9,14 @@ int main(){
 	int *Order;
 	int *QuantitiofMatrix;
 	int stop = 0;
+	int Counter_danger = 0;
+	int Counter_Houses = 0;
+	int sumOfItems = 0;
 	signed short int StartRow;
 	signed short int StartColunm;
 	signed short int lives = 10;
+	signed short int sum;
+	
 
 		counter = (int *)malloc(1*sizeof(int));
 
@@ -25,9 +30,9 @@ int main(){
 	for(int i=0; i<NUMAT; i++)
 		SaveMatrix(&m,counter);
 
-	while(stop != 1)
-	{
-		FillingintheMatrix(&m,counter_matrix,Order,QuantitiofMatrix);
+		FillingintheMatrix(&m,counter_matrix,Order,QuantitiofMatrix,&sum);
+
+		printf("(%d)\n",sum);
 
 		printf("What Row you wanna start?");
 		scanf("%hd",&StartRow);
@@ -35,9 +40,9 @@ int main(){
 		printf("What Colunm you wanna start?");
 		scanf("%hd",&StartColunm);
 
-		Walking(&m,StartRow,StartColunm,&stop,&lives);
+		Walking(&m,StartRow,StartColunm,&stop,&lives,&sum,Order,counter_matrix,QuantitiofMatrix,&Counter_danger,&Counter_Houses,&sumOfItems);
 
-	}
+		printf("The end!, you died\n");
 	
 	free(Order);
 	free(counter);
