@@ -3,84 +3,63 @@
 #include<string.h>
 #include<time.h>
 
-void GenerateMatrix(Matrix *mat){
-	int data = 0;
 
-	for(int i=0; i<MAXROWS; i++)
-        for(int j=0; j<MAXCOLS; j++){
-        	data = rand()%20;
-        	if(data <= 10)
-            	mat->Matrix[i][j].val = (1 + rand()%5) + '0'; 
-            else if ((data > 10) && (data < 16))
-            	mat->Matrix[i][j].val = '*';
-            else
-            	mat->Matrix[i][j].val = '#';
-        }
-}
-
-
-void SetMatrixSignature(){
-	FILE *f;
-
-	if ((f = fopen("dataset/input.data", "w")) == NULL){
-		printf("file could not be opened");
-    	exit(-1);
-    }
-
-    fprintf(f,"%d %d %d", MAXROWS, MAXCOLS, NUMAT); 
-    fprintf(f,"\n");
-    fclose(f);
-
-}
-
-void GenerateDiferentFiles(int *Counter)
+void GenerateDiferentFiles(int *Quantitiofmatrix,FILE **file,char **Matrix,int *Order)
 {
 	//local variables
 		signed char letter[5];
-		signed char name[20] = "dataset/input";
+		signed char name[30] = "Diferentinputs/input";
+		int Counter = 1;
 	//finished the variables
 
-	FILE *file;
 
-	//for counter in what is the matrix that will to create
-		*Counter = *Counter + 1;
-
-	//for to bring toghter the  
-		sprintf(letter,"%d",*Counter);
-		strcat(name,letter);
-		strcat(name,".data");
-	//finished
-
-	if(*Counter != 1)
+	while(Counter <= *Quantitiofmatrix)
 	{
-		file = fopen(name,"w");
-		if (file==NULL){
-		printf("file could not be opened");
-    	exit(-1);
+		//for to bring toghter the  
+			sprintf(letter,"%d",Counter);
+			strcat(name,letter);
+			strcat(name,".data");
+		//finished
+
+		Counter ++;
+
+		FILE *file_aux = fopen(name,"w");
+
+		//for not subscribe data 
+			ClearArrey(name,letter);
+
+		strcpy(name,"Diferentinputs/input");
+
+		if (file_aux == NULL)
+		{
+			printf("file could not be opened");
+			exit(-1);
 		}
+
+		//filling matrix
+			for (int i = 0; i < *Order; i++)
+			{
+				for (int j = 0; j < *Order; j++)
+				{
+					fscanf(*file,"%s",&Matrix[i][j]);
+				}
+			}
+		//finished filling in
+
+		//write new file
+			for (int i = 0 ; i < *Order ; i++)
+			{
+				for (int j = 0 ; j < *Order - 1 ; j ++)
+				{
+					fprintf(file_aux,"%c ",Matrix[i][j]); 
+				}
+				fprintf(file_aux,"\n");
+			}
+
+		fclose(file_aux);
 	}
-	fclose(file);
+	fclose(*file);
 
-}
-
-void SaveMatrix(Matrix *mat){
-
-	FILE *f = fopen("dataset/input.data","a");
-	
-	if (f==NULL){
-		printf("file could not be opened");
-		exit(-1);
-	}
-
-    GenerateMatrix(mat);
-
-	for (int i=0;i<MAXROWS;i++){
-        for (int j=0;j<MAXCOLS;j++)
-             fprintf(f,"%c ", mat->Matrix[i][j].val); 
-        fprintf(f,"\n");
-	}
-	fprintf(f,"\n");
-	fclose(f);
 }
 
 void GetSize(int *Order, int *QuantitiofMatrix,FILE **file)
@@ -98,13 +77,13 @@ void GetSize(int *Order, int *QuantitiofMatrix,FILE **file)
 	//finished
 }
 
-void PrintMatrix(int *Order,Matrix *mat)
+void PrintMatrix(int *Order,char **Matrix)
 {
 	for (int i = 0; i < *Order; i++)
 	{
 		for (int j = 0; j < *Order; j++)
 		{
-			printf(" [%c]",mat->Matrix[i][j].val);
+			printf(" [%c]",Matrix[i][j]);
 		}
 		printf("\n");
 	}
@@ -116,63 +95,65 @@ void ClearArrey(signed char name[20],signed char letter[20]){
         name[i] = '\0';
     }
 
-	printf(" %s",name);
-
 }
 
-void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *QuantitiofMatrix,signed short int *sum)
+void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,signed short int *sum,char **Matrix)
 {
 	//local variables
 		FILE *file;
 		signed char letter[5];
-		signed char name[20] = "dataset/data";
+		signed char name[30] = "Diferentinputs/input";
 		char value;
 		char intermed;
 		int value2;
 	//finished the variables
 
+	//for record matrix after changed per program	
+		if(*counter_matrix > 0)
+		{
+			//for write new files for operate matrix
+				sprintf(letter,"%d",*counter_matrix);
+				strcat(name,letter);
+				strcat(name,".data");
+			//finished
 
-	if(*counter_matrix > 0)
-	{
-		sprintf(letter,"%d",*counter_matrix);
+			file = fopen(name,"w");
+			if(file == NULL){
+				printf("file is not open\n");
+				return; 
+			}
 
-		strcat(name,letter);
-		strcat(name,".data");
-		file = fopen(name,"w");
-		if(file == NULL){
-			printf("file is not open\n");
-			return; 
+			//write in the file that in now they are open
+				for (int i = 0 ; i < *Order ; i++){
+					for (int j = 0 ; j < *Order - 1 ; j ++)
+					{
+						fprintf(file,"%c ",Matrix[i][j]); 
+					}
+					fprintf(file,"\n");
+				}
+				fprintf(file,"\n");
+			//finished
+
+				fprintf(file,"%d",*sum);
+				fprintf(file,"\n");
+				fclose(file);
+			
+			ClearArrey(name,letter);
+			strcpy(name,"Diferentinputs/input");
+
+			*sum = 0;
 		}
-
-		if(*counter_matrix == 1){
-			fprintf(file,"%d %d %d", MAXROWS, MAXCOLS, NUMAT); 
-    		fprintf(file,"\n");
-		}
-
-		for (int i=0;i<MAXROWS;i++){
-        	for (int j=0;j<MAXCOLS;j++){
-            	fprintf(file,"%c ", mat->Matrix[i][j].val); }
-        	fprintf(file,"\n");
-		}
-		fprintf(file,"\n");
-
-		fprintf(file,"%d",*sum);
-		fprintf(file,"\n");
-		fclose(file);
-		ClearArrey(name,letter);
-		strcpy(name,"dataset/data");
-		*sum = 0;
-	}
-
+	//recorde finished
 	
 	
 
-	(*counter_matrix == 3)?(*counter_matrix = 1):(*counter_matrix = *counter_matrix + 1);
+	(*counter_matrix == *QuantitiofMatrix)?(*counter_matrix = 1):(*counter_matrix = *counter_matrix + 1);
 
-	sprintf(letter,"%d",*counter_matrix);
-
-	strcat(name,letter);
-	strcat(name,".data");
+	//for write new files for operate matrix
+				sprintf(letter,"%d",*counter_matrix);
+				strcat(name,letter);
+				strcat(name,".data");
+	//finished
 
 	printf("%s\n",name);
 
@@ -181,11 +162,6 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 		printf("file is not open\n");
 		return; 
 	}
-
-	if(*counter_matrix == 1) 
-	{
-		GetSize(Order,QuantitiofMatrix,&file);
-	}
 	
 
 	//filling the matrix
@@ -193,10 +169,10 @@ void FillingintheMatrix(Matrix *mat,int *counter_matrix,int *Order,int *Quantiti
 	{
 		for (int j = 0; j < *Order; j++)
 		{
-			fscanf(file,"%s",&mat->Matrix[i][j].val);
-			if(mat->Matrix[i][j].val != '*' && mat->Matrix[i][j].val != '#')
+			fscanf(file,"%s",&Matrix[i][j]);
+			if(Matrix[i][j] != '*' && Matrix[i][j] != '#')
 			{
-				intermed = mat->Matrix[i][j].val;
+				intermed = Matrix[i][j];
 				value2 = atoi(&intermed);
 				*sum += value2;
 				value2 = 0;
@@ -297,14 +273,11 @@ void TheChoose(signed short int *Colunm,signed short int *Row, int *Order)
 			*Row = 5;
 		}
 	//finished
-
-	printf("Row:(%d)\n",*Row);
-	printf("Colunm:(%d)\n",*Colunm);
 	
 	//end function
 }
 
-void Walking(Matrix *m,signed short int StartRow, signed short int StartColunm,int *stop, signed short int *lives,signed short int *sum, int *Order,int *Counter_matrix, int *QuantitofMatrix,int *Counter_danger, int *Counter_Houses,int *sumOfItems)
+void Walking(signed short int StartRow, signed short int StartColunm,int *stop, signed short int *lives,signed short int *sum, int *Order,int *Counter_matrix, int *QuantitofMatrix,int *Counter_danger, int *Counter_Houses,int *sumOfItems,char **Matrix)
 {
 	//local variables 
 		signed short int Row;
@@ -313,22 +286,22 @@ void Walking(Matrix *m,signed short int StartRow, signed short int StartColunm,i
 	//finished
 
 	Colunm = StartColunm;
-	Row = StartRow;
+	Row = StartRow;	
 
 	//start looping for walking per matrix
 		while(*stop != 1){
 		//check for subtract lives or subtract value of the house
-			if(m->Matrix[Row][Colunm].val == '*')
+			if(Matrix[Row][Colunm] == '*')
 			{
 				*lives -= 1;
 				*Counter_danger += 1;
 				*Counter_Houses += 1;
 			}
-			else if(m->Matrix[Row][Colunm].val > 0 && m->Matrix[Row][Colunm].val != '*' && m->Matrix[Row][Colunm].val != '#')
+			else if(Matrix[Row][Colunm] > 0 && Matrix[Row][Colunm] != '*' && Matrix[Row][Colunm] != '#')
 			{
 				Counter++;
 				*Counter_Houses += 1;
-				m->Matrix[Row][Colunm].val -= 1;
+				Matrix[Row][Colunm] -= 1;
 				*sumOfItems += 1;
 				*sum -= 1;
 				printf("\nsoma de itens: [%d]\n",*sumOfItems);
@@ -343,7 +316,7 @@ void Walking(Matrix *m,signed short int StartRow, signed short int StartColunm,i
 		//checking if the decision predecessor maked the right
 			while(*stop != 1)
 			{
-				if(m->Matrix[Row][Colunm].val != '#')
+				if(Matrix[Row][Colunm] != '#')
 				{
 					*stop = 1;
 				}
@@ -379,9 +352,28 @@ void Walking(Matrix *m,signed short int StartRow, signed short int StartColunm,i
 			if(Row == 0 || Row == (*Order - 1) || Colunm == 0 ||
 			Colunm == (*Order - 1))
 			{
-				FillingintheMatrix(m,Counter_matrix,Order,QuantitofMatrix,sum);
+				FillingintheMatrix(Counter_matrix,Order,QuantitofMatrix,sum,Matrix);
+				//checking if the decision predecessor maked the right
+					while(*stop != 1)
+					{
+						if(Matrix[Row][Colunm] != '#')
+						{
+							*stop = 1;
+						}
+						else{
+							Colunm = StartColunm;
+							Row = StartRow;
+							TheChoose(&Colunm,&Row,Order);
+						}
+
+					}
+				//finished
+				//for reuse of the variable in here
+					*stop = 0;
 			}
 		//finished
+			printf("Row:(%d)\n",Row);
+			printf("Colunm:(%d)\n",Colunm);
 
 			getchar();
 			getchar();
