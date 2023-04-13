@@ -49,7 +49,7 @@ void GenerateDiferentFiles(int *Quantitiofmatrix,FILE **file,char **Matrix,int *
 		//write new file
 			for (int i = 0 ; i < *Order ; i++)
 			{
-				for (int j = 0 ; j < *Order - 1 ; j ++)
+				for (int j = 0 ; j < *Order ; j ++)
 				{
 					fprintf(file_aux,"%c ",Matrix[i][j]); 
 				}
@@ -103,7 +103,6 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 		FILE *file;
 		signed char letter[5];
 		signed char name[30] = "Diferentinputs/input";
-		char value;
 		char intermed;
 		int value2;
 	//finished the variables
@@ -125,7 +124,7 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 
 			//write in the file that in now they are open
 				for (int i = 0 ; i < *Order ; i++){
-					for (int j = 0 ; j < *Order - 1 ; j ++)
+					for (int j = 0 ; j < *Order ; j ++)
 					{
 						fprintf(file,"%c ",Matrix[i][j]); 
 					}
@@ -134,8 +133,6 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 				fprintf(file,"\n");
 			//finished
 
-				fprintf(file,"%d",*sum);
-				fprintf(file,"\n");
 				fclose(file);
 			
 			ClearArrey(name,letter);
@@ -150,12 +147,12 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 	(*counter_matrix == *QuantitiofMatrix)?(*counter_matrix = 1):(*counter_matrix = *counter_matrix + 1);
 
 	//for write new files for operate matrix
-				sprintf(letter,"%d",*counter_matrix);
-				strcat(name,letter);
-				strcat(name,".data");
+		sprintf(letter,"%d",*counter_matrix);
+		strcat(name,letter);
+		strcat(name,".data");
 	//finished
 
-	printf("%s\n",name);
+	printf("Matrix atual: [%d]\n",*counter_matrix);
 
 	file = fopen(name,"r");
 	if(file == NULL){
@@ -170,10 +167,11 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 		for (int j = 0; j < *Order; j++)
 		{
 			fscanf(file,"%s",&Matrix[i][j]);
-			if(Matrix[i][j] != '*' && Matrix[i][j] != '#')
+			if(Matrix[i][j] != '*' || Matrix[i][j] != '#')
 			{
 				intermed = Matrix[i][j];
 				value2 = atoi(&intermed);
+				intermed = '\0';
 				*sum += value2;
 				value2 = 0;
 			}
@@ -190,65 +188,45 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 void TheChoose(signed short int *Colunm,signed short int *Row, int *Order)
 {
 	//local variables	
-		signed short int escolha_linha;
-		signed short int escolha_coluna ;
-		signed short int choose_Colunm;
-		signed short int choose_Row;
-		signed short int stop = 0;
-		unsigned int seed = time(NULL);
+		short int number_Row;
+		short int number_Colunm ;
+		short int choose;
 	//finished
 
 	//seet semente
-	srand((seed));
-
-	escolha_coluna = rand()%2;
-
-	//change the semente and reset
-	seed++;
-	srand((seed));
-
-	escolha_linha = rand()%2;
-
-	seed++;
-	srand((seed));
-
-	choose_Colunm = rand()%2;
-
-	seed++;
-	srand((seed));
-
-	choose_Row = rand()%2;
-
-	//for include in randon decision houses that are before the Jack	
-		if(choose_Colunm == 1)
-		{
-			escolha_coluna *= (-1);
-		}
-
-		if(choose_Row == 1)
-		{
-			escolha_linha *= (-1);
-		}
-	//finished
-
-	//check for force that Jack change your position
-		if(escolha_coluna == 0)
-		{
-			while(stop != 1)
-			{
-				if(escolha_linha == 0)
-					escolha_linha = rand()%2;
-				else{
-					stop = 1;
-				}
-			}
-			stop = 0;
-		}
-	//finished
+	srand(time(0));
 	
-	*Colunm = escolha_coluna + *Colunm;
+	choose = rand()%20;
 
-	*Row = escolha_linha + *Row;
+        if(choose > 5 && choose < 12)
+        {
+            number_Colunm = 1;
+        }
+        else if(choose > 0 && choose < 6)
+        {
+            number_Colunm = -1;
+        }
+        else{
+            number_Colunm = 0; 
+        }
+
+	choose = rand()%20;
+
+        if(choose > 5 && choose < 12)
+        {
+            number_Row = 1;
+        }
+        else if(choose > 0 && choose < 6)
+        {
+            number_Row = -1;
+        }
+        else{
+            number_Row = 0; 
+        }
+
+	*Colunm = number_Colunm + *Colunm;
+
+	*Row = number_Row + *Row;
 
 	//for the colunm or row don´t have positions that unexist
 		if(*Colunm < 0)
@@ -282,55 +260,80 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 	//local variables 
 		signed short int Row;
 		signed short int Colunm;
+		signed short int Current_Row;
+		signed short int Current_Colunm;
 		signed short int Counter = 0;
 	//finished
 
 	Colunm = StartColunm;
-	Row = StartRow;	
+	Row = StartRow;
+	
 
 	//start looping for walking per matrix
 		while(*stop != 1){
-		//check for subtract lives or subtract value of the house
-			if(Matrix[Row][Colunm] == '*')
-			{
-				*lives -= 1;
-				*Counter_danger += 1;
-				*Counter_Houses += 1;
-			}
-			else if(Matrix[Row][Colunm] > 0 && Matrix[Row][Colunm] != '*' && Matrix[Row][Colunm] != '#')
-			{
-				Counter++;
-				*Counter_Houses += 1;
-				Matrix[Row][Colunm] -= 1;
-				*sumOfItems += 1;
-				*sum -= 1;
-				printf("\nsoma de itens: [%d]\n",*sumOfItems);
-				printf("\nContador das casas: [%d]\n",*Counter_Houses);
-			}
-		//finished
-
-		//randon decision for change the position of Jack	
-			TheChoose(&Colunm,&Row,Order);
-		//finished
-
-		//checking if the decision predecessor maked the right
-			while(*stop != 1)
-			{
-				if(Matrix[Row][Colunm] != '#')
+			if(*Counter_Houses == 0){
+				//checking if the decision predecessor maked the right
+				while(*stop != 1)
 				{
-					*stop = 1;
-				}
-				else{
-					Colunm = StartColunm;
-					Row = StartRow;
-					TheChoose(&Colunm,&Row,Order);
-				}
+					if(Matrix[Row][Colunm] != '#')
+					{
+						*stop = 1;
+					}
+					else{
+						printf("Teve de ser redecidido, então teremos mais de um print\n");
+						TheChoose(&Colunm,&Row,Order);
+					}
 
+				}
+			//finished
 			}
-		//finished
+		Current_Colunm = Colunm;
+		Current_Row = Row;
 
 		//for reuse of the variable in here
 			*stop = 0;
+
+		//check for subtract lives or subtract value of the house
+			if(Matrix[Row][Colunm] == '*')
+			{
+				*lives -= 1;//for sobtract the lives
+				*Counter_danger += 1;//for counter the dangers faced
+				*Counter_Houses += 1;//for counter the houses that Jack it happened
+			}
+			else if(Matrix[Row][Colunm] != '0' && Matrix[Row][Colunm] != '*' && Matrix[Row][Colunm] != '#')
+			{
+				Counter++;//for counter subtration of elements of the houses
+				*Counter_Houses += 1;
+				Matrix[Row][Colunm] -= 1;
+				*sumOfItems += 1;
+			}
+		//finished
+
+		printf("\nVidas: %d\n",*lives);
+
+		printf("Current Row:(%d)\n",Row);
+		printf("Current Colunm:(%d)\n",Colunm);
+
+		printf("\nsoma de itens: [%d]\n",*sumOfItems);
+		printf("\nContador das casas: [%d]\n",*Counter_Houses);
+
+		Current_Colunm = Colunm;
+		Current_Row = Row;
+
+		while(*stop != 1)
+		{
+			TheChoose(&Colunm,&Row,Order);
+			if(Matrix[Row][Colunm] != '#')
+					{
+						*stop = 1;
+					}
+					else{
+						Row = Current_Row;
+						Colunm = Current_Colunm;
+					}
+		}
+
+		*stop = 0;
 
 		//for check if collected four items, if yes sum one live for jack		
 			if(Counter == 4)
@@ -340,12 +343,10 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 			}
 		//finished
 
-			printf("Vidas: %d\n",*lives);
-
 		//for stop the loop, and close the program
-			if(*lives < 1 || *sum == 0)
+			if(*lives < 1)
 			{
-				*stop = 1;
+				break;
 			}
 
 		//for changed the matrix that are in the program
@@ -361,8 +362,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 							*stop = 1;
 						}
 						else{
-							Colunm = StartColunm;
-							Row = StartRow;
+							printf("Teve de ser redecidido, então teremos mais de um print, porem repare que foi no segundo print sendo assim significa que o problema esta na matrix que acobou de ser recuperada\n");
 							TheChoose(&Colunm,&Row,Order);
 						}
 
@@ -372,8 +372,12 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 					*stop = 0;
 			}
 		//finished
-			printf("Row:(%d)\n",Row);
-			printf("Colunm:(%d)\n",Colunm);
+
+		//for stop the loop, and close the program
+			if(*lives < 1)
+			{
+				*stop = 1;
+			}
 
 			getchar();
 			getchar();

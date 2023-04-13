@@ -14,6 +14,5 @@ void Walking(signed short int StartRow, signed short int SartColunm,int *stop, s
 void PrintMatrix(int *Order,char **Matrix);
 void TheChoose(signed short int *Colunm,signed short int *Row,int *Order);
 void ClearArrey(signed char name[20],signed char letter[20]);
-void StartFillingin();
 
 #endif
