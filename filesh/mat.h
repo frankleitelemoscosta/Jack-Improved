@@ -12,7 +12,7 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 void GetSize(int *Order, int *QuantitiofMatrix,FILE **file);
 void Walking(signed short int StartRow, signed short int SartColunm,int *stop, signed short int *lives,signed short int *sum,int *Order,int *Counter_matrix, int *QuantitofMatrix,int *Counter_danger,int *Counter_Houses,int *sumOfItems,char **Matrix);
 void PrintMatrix(int *Order,char **Matrix);
-void TheChoose(signed short int *Colunm,signed short int *Row,int *Order);
+void TheChoose(signed short int *Colunm,signed short int *Row,int *Order,bool parameter);
 void ClearArrey(signed char name[20],signed char letter[20]);
 
 #endif

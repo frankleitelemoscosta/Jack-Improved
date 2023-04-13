@@ -185,7 +185,7 @@ void FillingintheMatrix(int *counter_matrix,int *Order,int *QuantitiofMatrix,sig
 
 }
 
-void TheChoose(signed short int *Colunm,signed short int *Row, int *Order)
+void TheChoose(signed short int *Colunm,signed short int *Row, int *Order,bool parameter)
 {
 	//local variables	
 		short int number_Row;
@@ -193,36 +193,44 @@ void TheChoose(signed short int *Colunm,signed short int *Row, int *Order)
 		short int choose;
 	//finished
 
-	//seet semente
-	srand(time(0));
-	
-	choose = rand()%20;
+	if(parameter == true)
+	{
+		number_Colunm = rand()%7;
+		number_Row = rand()%7;	
+	}else if(parameter == false)
+	{
+		//seet semente
+		srand(time(0));
+		
+		choose = rand()%20;
 
-        if(choose > 5 && choose < 12)
-        {
-            number_Colunm = 1;
-        }
-        else if(choose > 0 && choose < 6)
-        {
-            number_Colunm = -1;
-        }
-        else{
-            number_Colunm = 0; 
-        }
+			if(choose > 5 && choose < 12)
+			{
+				number_Colunm = 1;
+			}
+			else if(choose > 0 && choose < 6)
+			{
+				number_Colunm = -1;
+			}
+			else{
+				number_Colunm = 0; 
+			}
 
-	choose = rand()%20;
+		choose = rand()%20;
 
-        if(choose > 5 && choose < 12)
-        {
-            number_Row = 1;
-        }
-        else if(choose > 0 && choose < 6)
-        {
-            number_Row = -1;
-        }
-        else{
-            number_Row = 0; 
-        }
+			if(choose > 5 && choose < 12)
+			{
+				number_Row = 1;
+			}
+			else if(choose > 0 && choose < 6)
+			{
+				number_Row = -1;
+			}
+			else{
+				number_Row = 0; 
+			}
+
+	}
 
 	*Colunm = number_Colunm + *Colunm;
 
@@ -263,6 +271,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 		signed short int Current_Row;
 		signed short int Current_Colunm;
 		signed short int Counter = 0;
+		bool parameter;
 	//finished
 
 	Colunm = StartColunm;
@@ -281,7 +290,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 					}
 					else{
 						printf("Teve de ser redecidido, então teremos mais de um print\n");
-						TheChoose(&Colunm,&Row,Order);
+						TheChoose(&Colunm,&Row,Order,false);
 					}
 
 				}
@@ -322,7 +331,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 
 		while(*stop != 1)
 		{
-			TheChoose(&Colunm,&Row,Order);
+			TheChoose(&Colunm,&Row,Order,false);
 			if(Matrix[Row][Colunm] != '#')
 					{
 						*stop = 1;
@@ -363,7 +372,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 						}
 						else{
 							printf("Teve de ser redecidido, então teremos mais de um print, porem repare que foi no segundo print sendo assim significa que o problema esta na matrix que acobou de ser recuperada\n");
-							TheChoose(&Colunm,&Row,Order);
+							TheChoose(&Colunm,&Row,Order,true);
 						}
 
 					}
