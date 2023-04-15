@@ -60,10 +60,10 @@ Inicialmente foi utilizado o srand com a semente "time(0)", o qual recupera o te
 </p>
 
 <p style = "text-align = justify">
-Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu algoritmo de geração aleatória de matrizes, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix 
+Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu algoritmo de geração aleatória de matrizes, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
 </p>
 
-<p>Caminhamento em uma matrix(mat)<br>
+<p>Escolha aleatória para caminhamento em uma matrix(mat)<br>
 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;parameter&nbsp;&nbsp;==&nbsp;&nbsp;true&nbsp;&nbsp;THEN<br>
 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
@@ -84,6 +84,12 @@ Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada po
 18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br></p>
 
+<p style = "text-align = justify">
+O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada.
+<p>
+
+<img src="image/matriz.png" alt="" style="width: 20% ">
+
 <h2>CONCLUSÃO</h2>
 
 <h2>REFERÊNCIAS</h2>
@@ -97,4 +103,4 @@ Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada po
 
 Frank Leite Lemos Costa, aluno de Engenharia da Computação no 3° período.
 
-<a href="https://www.linkedin.com/in/frank-leite-6a6a84198/"><img src="image/linkedin.png" alt="" style="width: 10% "></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/whatsapp.png" alt="" style="width: 20% "><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linkedin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(31) 99644-9587
+<a href="https://www.linkedin.com/in/frank-leite-6a6a84198/"><img src="image/linkedin.png" alt="" style="width: 10% "></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/whatsapp.png" alt="" style="width: 20% "><br>&nbsp;&nbsp;&nbsp;linkedin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(31) 99644-9587
