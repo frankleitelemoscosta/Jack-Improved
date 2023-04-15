@@ -11,6 +11,15 @@ Neste projeto deve se encontrar resolução para a seguinte situação: Um garot
 <h2>LÓGICA UTILIZADA</h2>
 
 <p style = "text-align = justify">
+Para resolver o problema foi necessário trazer soluções para os seguintes problemas:
+</p>
+
+<ul>
+    <li>Como trabalhar os dados de entrada, sendo eles um grande número de matrizes e de ordem muito grande?
+    <li>Como andar pelas matrizes de maneira aleatória, e ao mesmo tempo contar as casas percorridas, alem da quantidade de elementos coletados pelo percurso ?
+</ul>
+
+<p style = "text-align = justify">
 Para preencher os arquivos foi utilizado o <a href="https://github.com/mpiress/GenerateDataToMaze">algoritimo</a> desenvolvido por Michel Pires, que esta em seu perfil do git hub.  
 </p>
 
@@ -33,7 +42,7 @@ Porem ela é limitada, e lembrando que existem diversos outros processos sendo e
 </p>
 
 <p style = "text-align = justify">
-Agora o que tem de ser feito para conseguir trabalhar a matriz e altera-la do estado original quando foi inserida no programa, alcançando o ?
+Agora o que tem de ser feito para conseguir trabalhar a matriz e altera-la do estado original quando foi inserida no programa, alcançando a morte de Jack ou zerando todas as matrizes ?
 </p>
 
 <p style = "text-align = justify">
@@ -85,7 +94,7 @@ Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada po
 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br></p>
 
 <p style = "text-align = justify">
-O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada.
+O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada, e uma posição da matriz é escolhida de forma aleatória.
 <p>
 
 <img src="image/matriz.png" alt="" style="width: 20% ">
