@@ -197,7 +197,7 @@ void TheChoose(signed short int *Colunm,signed short int *Row, int *Order,bool p
 	{
 		number_Colunm = rand()%7;
 		number_Row = rand()%7;	
-	}else if(parameter == false)
+	}else
 	{
 		//seet semente
 		srand(time(0));

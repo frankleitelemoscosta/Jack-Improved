@@ -56,8 +56,26 @@ Para caminhar pela matriz foi utilizado um processo de escolha aleatória e impa
 </p>
 
 <p style = "text-align = justify">
-Inicialmente foi utilizado o srand com a semente "time(0)" recupera o tempo atual em segundos desde a época de 1º de janeiro de 1970 e é usado como valor inicial, com o intervalo de 0 a 1 e uma segunda decisão aleatória era tomada para decidir se o 1 seria negativo ou não, porem essa estratégia se mostrou pouco eficiente. 
+Inicialmente foi utilizado o srand com a semente "time(0)", o qual recupera o tempo atual em segundos desde a época de 1º de janeiro de 1970 e é usado como valor inicial, com o intervalo de 0 a 1 e uma segunda decisão aleatória era tomada para decidir se o 1 seria negativo ou não, porem essa estratégia se mostrou pouco eficiente. 
 </p>
+
+<p style = "text-align = justify">
+Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu algoritmo de geração aleatória de matrizes, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix 
+</p>
+
+<p>Caminhamento em uma matrix(mat)<br>
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;parameter&nbsp;&nbsp;==&nbsp;&nbsp;true&nbsp;&nbsp;THEN<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br>
+6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF choosen&nbsp;&nbsp;>&nbsp;&nbsp;5&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;12&nbsp;&nbsp;THEN<br>
+7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm = 1<br>
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;&nbsp;IF&nbsp;&nbsp;choosen&nbsp;&nbsp;>&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;6&nbsp;&nbsp;THEN<br>
+9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;-1<br>
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br></p>
 
 <h2>CONCLUSÃO</h2>
 
@@ -72,6 +90,4 @@ Inicialmente foi utilizado o srand com a semente "time(0)" recupera o tempo atua
 
 Frank Leite Lemos Costa, aluno de Engenharia da Computação no 3° período.
 
-<a href="https://www.linkedin.com/in/frank-leite-6a6a84198/"><img src="image/linkedin.png" alt="" style="width: 10% "><br>linkedin</a>
-
-<img src="image/whatsapp.png" alt="" style="width: 20% "><br> (31) 99644-9587
+<a href="https://www.linkedin.com/in/frank-leite-6a6a84198/"><img src="image/linkedin.png" alt="" style="width: 10% "></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/whatsapp.png" alt="" style="width: 20% "><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linkedin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(31) 99644-9587
