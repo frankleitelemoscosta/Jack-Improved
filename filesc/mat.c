@@ -163,8 +163,6 @@ void WriteMatrix(int *counter_matrix,int *Order,char **Matrix,int **vet,int *Cou
 				fprintf(file,"%d\n",*Alocate_Counter);
 			}
 
-			printf("%d\n",*Alocate_Counter);
-
 			fclose(file);
 
 			ClearArrey(name);
@@ -275,6 +273,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 		int Counter_matrix_change = 0;
 		char intermed;
 		int value2;
+		int apagar;
 	//finished
 
 
@@ -298,33 +297,6 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 			printf("Row: [%d]\n",Row);
 			printf("Colunm: [%d]\n",Colunm);
 
-			if(Alocate_Counter == Counter_auxiliar){
-				//init alloc the vector auxiliar
-				vet_aux = (int*)malloc(Alocate_Counter * sizeof(int));
-
-				//pass information
-				for(int i = 0 ; i < Alocate_Counter ; i++ )
-				{
-					vet_aux[i] = vet[i];
-				}
-
-
-				//free memory
-				vet = (int*)realloc(vet, 0);
-
-				Alocate_Counter = Counter_auxiliar + 1;
-
-				//realoc
-				vet = (int*)malloc(Alocate_Counter * sizeof(int));
-
-				//pass information
-				for(int i = 0 ; i < Alocate_Counter ; i++ )
-				{
-					vet[i] = vet_aux[i]; 
-				}
-
-				vet_aux = (int*)realloc(vet_aux, 0);
-			}
 			if(*Counter_Houses == 0){
 				//checking if the decision predecessor maked the right
 				while(*stop != 1)
@@ -357,11 +329,36 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 									Colunm = Current_Colunm;
 								}
 					}
-
 					*stop = 0;
-
 			}
 
+			if(Alocate_Counter == Counter_auxiliar){
+				//init alloc the vector auxiliar
+				vet_aux = (int*)malloc(Alocate_Counter * sizeof(int));
+
+				//pass information
+				for(int i = 0 ; i < Alocate_Counter ; i++ )
+				{
+					vet_aux[i] = vet[i];
+				}
+
+
+				//free memory
+				vet = (int*)realloc(vet, 0);
+
+				Alocate_Counter = Counter_auxiliar + 1;
+
+				//realoc
+				vet = (int*)malloc(Alocate_Counter * sizeof(int));
+
+				//pass information
+				for(int i = 0 ; i < Alocate_Counter ; i++ )
+				{
+					vet[i] = vet_aux[i]; 
+				}
+
+				vet_aux = (int*)realloc(vet_aux, 0);
+			}
 
 		//for reuse of the variable in here
 			*stop = 0;
@@ -370,6 +367,8 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 			if(Matrix[Row][Colunm] == '*')
 			{
 				vet[(Alocate_Counter - 1)] = ((Row * (*Order))+1) + (Colunm);
+				apagar = Alocate_Counter - 1;
+				printf("Posição: [%d] : %d\n",apagar,vet[apagar]);
 				Counter_auxiliar++;
 				*lives -= 1;//for sobtract the lives
 				*Counter_danger += 1;//for counter the dangers faced
@@ -379,6 +378,8 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 			{
 				Counter++;//for counter subtration of elements of the houses
 				vet[(Alocate_Counter - 1)] = ((Row * (*Order))+1) + (Colunm);
+				apagar = Alocate_Counter - 1;
+				printf("Posição: [%d] : %d\n",apagar,vet[apagar]);
 				Counter_auxiliar++;
 				*Counter_Houses += 1;
 				Matrix[Row][Colunm] -= 1;
@@ -420,16 +421,19 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 					printf("file is not open,não é aqui\n");
 				}
 
+				//write array in the file
 				for (int i = 0 ; i < Alocate_Counter ; i++)
 				{
 					fprintf(file,"%d\n",vet[i]);
+					printf("posição: [%d]: %d\n ",i,vet[i]);
 				}
+				//end write array
 
 				fclose(file);
 
-				vet = (int*)realloc(vet,0);
+				vet = (int*)realloc(vet,0);//free memory
 
-				ClearArrey(name);
+				ClearArrey(name);//clear array for write again
 
 				strcpy(name,"Diferentinputs/input");
 
@@ -444,11 +448,13 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 
 					printf("Matrix atual: [%d]\n",*Counter_matrix);
 
+					//open file
 					file = fopen(name,"r");
 					if(file == NULL){
 						printf("file is not open\n");
 						return; 
 					}
+					//end open file
 
 					//filling the matrix
 						for (int i = 0; i < *Order; i++)
@@ -468,7 +474,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 						}
 					//finished filling in the matrix
 
-					if(Counter_matrix_change > 3){
+					if(Counter_matrix_change > 2){
 						for (int i = 0 ; i < 1 ; i++)
 						{
 							fscanf(file,"%d",&Counter_auxiliar);
