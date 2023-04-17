@@ -55,7 +55,11 @@ int main(){
 		Walking(StartRow,StartColunm,&stop,&lives,&sum,&Order,counter_matrix,QuantitiofMatrix,&Counter_danger,&Counter_Houses,&sumOfItems,Matrix);
 
 		printf("The end!, you died\n");
-	
+
+		printf("Quantas CASAS foram PERCORRIDAS ao todo?: %d\n",Counter_Houses);
+		printf("Quantos PERIGOS foram ENFRENTADOS ao todo?: %d\n",Counter_danger);
+		printf("Qual a Soma dos ELEMENTOS ao todo?: %d\n",sumOfItems);
+
 	free(counter);
 	free(counter_matrix);
 	free(QuantitiofMatrix);

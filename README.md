@@ -69,7 +69,7 @@ Inicialmente foi utilizado o srand com a semente "time(0)", o qual recupera o te
 </p>
 
 <p style = "text-align = justify">
-Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu algoritmo de geração aleatória de matrizes, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
+Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu <a href="https://github.com/mpiress/GenerateDataToMaze">algoritmo de geração aleatória de matrizes</a>, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
 </p>
 
 <p>Escolha aleatória para caminhamento em uma matrix(mat)<br>
@@ -94,10 +94,12 @@ Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada po
 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br></p>
 
 <p style = "text-align = justify">
-O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada, e uma posição da matriz é escolhida de forma aleatória.
+O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada, e uma posição da matriz é escolhida de forma aleatória.Como mostra a imagem:
 <p>
 
-<img src="image/matriz.png" alt="" style="width: 20% ">
+<img src="image/LOGICA-DE-TELETRANSPORTE.png" alt="" style="width: 70% ">
+
+
 
 <h2>CONCLUSÃO</h2>
 
@@ -110,6 +112,6 @@ O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse
 
 <h2>AUTOR</h2>
 
-Frank Leite Lemos Costa, aluno de Engenharia da Computação no 3° período.
+Frank Leite Lemos Costa, aluno de Engenharia da Computação no <a href = "https://www.cefetmg.br/">CEFET</a>, 3° período.
 
 <a href="https://www.linkedin.com/in/frank-leite-6a6a84198/"><img src="image/linkedin.png" alt="" style="width: 10% "></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/whatsapp.png" alt="" style="width: 20% "><br>&nbsp;&nbsp;&nbsp;linkedin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(31) 99644-9587

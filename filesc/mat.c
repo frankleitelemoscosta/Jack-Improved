@@ -388,7 +388,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 		//finished
 
 		//for check if collected four items, if yes sum one live for jack		
-			if(Counter == 4)
+			if(Counter == 4 && *lives < 10)
 			{
 				*lives += 1;
 				Counter = 0;
@@ -513,7 +513,6 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 							*stop = 1;
 						}
 						else{
-							printf("Teve de ser redecidido, então teremos mais de um print, porem repare que foi no segundo print sendo assim significa que o problema esta na matrix que acobou de ser recuperada\n");
 							TheChoose(&Colunm,&Row,Order,true);
 						}
 
