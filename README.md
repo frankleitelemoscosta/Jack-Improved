@@ -17,6 +17,7 @@ Para resolver o problema foi necessário trazer soluções para os seguintes pro
 <ul>
     <li>Como trabalhar os dados de entrada, sendo eles um grande número de matrizes e de ordem muito grande?
     <li>Como andar pelas matrizes de maneira aleatória, e ao mesmo tempo contar as casas percorridas, alem da quantidade de elementos coletados pelo percurso ?
+    <li>Como saber ao final do programa quais casas não foram acessadas?.
 </ul>
 
 <p style = "text-align = justify">
@@ -99,7 +100,27 @@ O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse
 
 <img src="image/LOGICA-DE-TELETRANSPORTE.png" alt="" style="width: 70% ">
 
+<p style = "text-align = justify">
+Determinado a forma de caminhamento pela matriz foi necessário saber por onde Jack não estava passando assim que o programa encerrasse, para tal conceituemos o seguinte, toda matriz tem linhas e colunas atreladas a uma de suas casas, e suas linhas e colunas estão em ordem crescente, como mostra a imagem:
+</p>
 
+<img src="image/matriz-e-suas-linhas-e-colunas.png" alt="" style="width: 40% ">
+
+<p style = "text-align = justify">
+Agora se enumerarmos em ordem crescente as casas da matriz, considerando-a quadratica, e seguindo o sentido das colunas variando de um a um, e pulando uma linha quando chegarmos no valor da ordem ao variar as colunas, e com isso retornar ao primeiro elemento da linha subsequente e prosseguir a contage até chegar a ultima casa da matriz, que fica na quina inferior direita, teremos a seguinte situação: cada casa vai ter uma posição em uma contagem em ordem crescente, e considerando uma ordem n, teremos o tamanho dessa contagem que é: n².
+</p>
+
+<p style = "text-align = justify">
+Se colocassemos todos os elementos da matriz um após o outro sem quebrarmos uma linha durante essa organização o que teriamos é um vetor de n² posições, supondo que seja uma matriz de ordem 7 temos:
+</p>
+
+<img src="image/vetor(1).jpg" alt="" style="width: 40% ">
+
+<p style = "text-align = justify">
+Estas posições são os elementos da matriz e podem ser encontrados com a seguinte função de duas variaveis reais: Elemento = ((Linha x Ordem) + 1) + Coluna, mas observe que a fórmula esta declarada no contexto de indexação da computação, ou seja, o primeiro index de um vetor não será 1 e sim 0, agora imagine uma matriz de ordem 3 você quer descobrir um elemento cuja linha de localização é de valor 2, e coluna de valor 1, se você multiplicar o valor da linha pela ordem obterá o ultimo elemento da linha anterior, 2 x 3 = 6, se somarmos 1 a esse resultado obteremos o primeiro elemento da linha onde o elemento procurado esta, e somando ao valor da coluna teremos o elemento procurado, 2 x 3 + 1 + 1 = 8.
+</p>
+
+<img src="image/prova.png" alt="" style="width: 40% ">
 
 <h2>CONCLUSÃO</h2>
 
