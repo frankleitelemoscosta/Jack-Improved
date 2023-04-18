@@ -117,16 +117,129 @@ void StartFillingMatrix(int *Order,char **Matrix)
 						}
 					//finished filling in the matrix
 
-					printf("Order: %d\n",*Order);
-
 					PrintMatrix(Order,Matrix);
 
 }
 
-void WriteMatrix(int *counter_matrix,int *Order,char **Matrix,int **vet,int *Counter_auxiliar,int *Alocate_Counter,signed char *name,signed char *letter)
+void PrintPosition(int *Order,int *QuantitiofMatrix)
+{
+
+	FILE *file;
+	signed char letter[5];
+	signed char name_vector[30];
+	signed int Counter = 1;
+	int *vet;
+	int tamanho;
+	int lixo;
+	int tamanho_vet = pow(*Order,2);
+	int vet_ver[tamanho_vet];
+	int index;
+	int Counter_Walking = 0;
+
+
+
+
+	while(Counter < *QuantitiofMatrix)
+	{
+
+		sprintf(letter,"%d",Counter);
+		strcat(name_vector,letter);
+		strcat(name_vector,".data");
+
+		file = fopen(name_vector,"r");
+		if(file == NULL)
+		{
+			printf("file is not open,não é aqui\n");
+			return;
+		}
+
+		fscanf(file,"%d",&tamanho);
+
+		fscanf(file,"%d",&lixo);
+
+		vet = (int*)malloc(tamanho * sizeof(int));
+
+		for (int i = 0; i < tamanho; i++)
+		{
+			fscanf(file,"%d",vet[i]);
+		}
+
+		for(int i = 0; i < tamanho; i++)
+		{
+			index = vet[i];
+
+			if(vet_ver[index] !=0)
+			{
+				vet_ver[index] = index;
+				Counter_Walking++;
+			}
+
+		}
+		
+
+		free(vet);
+
+		Counter++;
+	}
+
+}
+
+void FillingMatrix(char **Matrix,signed short int *sum, int *Order,int *Counter_matrix, int *QuantitofMatrix)
+{
+	FILE *file;
+	char intermed;
+	int value2;
+	signed char letter[5];
+	signed char name[30] = "Diferentinputs/input";
+
+	(*Counter_matrix == *QuantitofMatrix)?(*Counter_matrix = 1):(*Counter_matrix = *Counter_matrix + 1);
+
+					//for write new files for operate matrix
+						sprintf(letter,"%d",*Counter_matrix);
+						strcat(name,letter);
+						strcat(name,".data");
+					//finished
+
+					printf("Matrix atual: [%d]\n",*Counter_matrix);
+
+					//open file
+					file = fopen(name,"r");
+					if(file == NULL){
+						printf("file is not open\n");
+						return; 
+					}
+					//end open file
+
+					//filling the matrix
+						for (int i = 0; i < *Order; i++)
+						{
+							for (int j = 0; j < *Order; j++)
+							{
+								fscanf(file,"%s",&Matrix[i][j]);
+								if(Matrix[i][j] != '*' || Matrix[i][j] != '#')
+								{
+									intermed = Matrix[i][j];
+									value2 = atoi(&intermed);
+									intermed = '\0';
+									*sum += value2;
+									value2 = 0;
+								}
+							}
+						}
+					//finished filling in the matrix
+
+					ClearArrey(name);
+
+					strcpy(name,"Diferentinputs/input");
+
+}
+
+void WriteMatrixFile(int *counter_matrix,int *Order,char **Matrix,int **vet,int *Counter_auxiliar,int *Alocate_Counter)
 {
 	//local variables
 		FILE *file;
+		signed char letter[5];
+		signed char name[30] = "Diferentinputs/input";
 	//finished the variables
 
 	//for record matrix after changed per program	
@@ -157,17 +270,9 @@ void WriteMatrix(int *counter_matrix,int *Order,char **Matrix,int **vet,int *Cou
 
 			//finished
 
-			for (int i = 0 ; i < 1 ; i++)
-			{
-				fprintf(file,"%d\n",*Counter_auxiliar);
-				fprintf(file,"%d\n",*Alocate_Counter);
-			}
-
 			fclose(file);
 
 			ClearArrey(name);
-
-			strcpy(name,"Diferentinputs/input");
 
 	//recorde finished
 
@@ -268,11 +373,9 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 		int *vet_aux;
 		FILE *file;
 		signed char letter[5];
-		signed char name[30] = "Diferentinputs/input";
+		signed char name_vector[30]="Diferentvectors/output";
 		int variable_aux;
 		int Counter_matrix_change = 0;
-		char intermed;
-		int value2;
 		int apagar;
 	//finished
 
@@ -404,21 +507,27 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 			printf("Vidas: %d\n",*lives);
 
 		//for changed the matrix that are in the program
-			if(Row == 0 || Row == (*Order - 1) || Colunm == 0 ||
-			Colunm == (*Order - 1))
+			if(Row == 0 || Row == (*Order - 1) || Colunm == 0 || Colunm == (*Order - 1))
 			{
 				Counter_matrix_change += 1;
 
-				WriteMatrix(Counter_matrix,Order,Matrix,&vet,&Counter_auxiliar,&Alocate_Counter,name,letter);
+				WriteMatrixFile(Counter_matrix,Order,Matrix,&vet,&Counter_auxiliar,&Alocate_Counter);
 
 				sprintf(letter,"%d",*Counter_matrix);
-				strcat(name,letter);
-				strcat(name,".data");
+				strcat(name_vector,letter);
+				strcat(name_vector,".data");
 
-				file = fopen(name,"a");
+				file = fopen(name_vector,"w");
 				if(file == NULL)
 				{
 					printf("file is not open,não é aqui\n");
+					return;
+				}
+
+				for (int i = 0 ; i < 1 ; i++)
+				{
+					fprintf(file,"%d\n",Counter_auxiliar);
+					fprintf(file,"%d\n",Alocate_Counter);
 				}
 
 				//write array in the file
@@ -433,48 +542,27 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 
 				vet = (int*)realloc(vet,0);//free memory
 
-				ClearArrey(name);//clear array for write again
+				ClearArrey(name_vector);//clear array for write again
 
-				strcpy(name,"Diferentinputs/input");
+				strcpy(name_vector,"Diferentvectors/output");
 
+				FillingMatrix(Matrix,sum,Order,Counter_matrix,QuantitofMatrix);
 
-					(*Counter_matrix == *QuantitofMatrix)?(*Counter_matrix = 1):(*Counter_matrix = *Counter_matrix + 1);
-
-					//for write new files for operate matrix
+				//for write new files for operate matrix
 						sprintf(letter,"%d",*Counter_matrix);
-						strcat(name,letter);
-						strcat(name,".data");
-					//finished
+						strcat(name_vector,letter);
+						strcat(name_vector,".data");
+				//finished
 
-					printf("Matrix atual: [%d]\n",*Counter_matrix);
 
-					//open file
-					file = fopen(name,"r");
-					if(file == NULL){
-						printf("file is not open\n");
-						return; 
-					}
-					//end open file
-
-					//filling the matrix
-						for (int i = 0; i < *Order; i++)
-						{
-							for (int j = 0; j < *Order; j++)
-							{
-								fscanf(file,"%s",&Matrix[i][j]);
-								if(Matrix[i][j] != '*' || Matrix[i][j] != '#')
-								{
-									intermed = Matrix[i][j];
-									value2 = atoi(&intermed);
-									intermed = '\0';
-									*sum += value2;
-									value2 = 0;
-								}
+					if(Counter_matrix_change > (*QuantitofMatrix - 1)){
+						//open file
+							file = fopen(name_vector,"r");
+							if(file == NULL){
+								printf("file is not open?\n");
+								return; 
 							}
-						}
-					//finished filling in the matrix
-
-					if(Counter_matrix_change > 2){
+						//end open file
 						for (int i = 0 ; i < 1 ; i++)
 						{
 							fscanf(file,"%d",&Counter_auxiliar);
@@ -498,8 +586,9 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 						vet = (int*)malloc(Alocate_Counter * sizeof(int));
 					}
 
-					ClearArrey(name);
-					strcpy(name,"Diferentinputs/input");
+				ClearArrey(name_vector);//clear array for write again
+
+				strcpy(name_vector,"Diferentvectors/output");
 
 
 				fclose(file);
@@ -522,6 +611,8 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 					*stop = 0;
 			}
 		//finished
+
+		*stop = 0;
 
 		//for stop the loop, and close the program
 			if(*lives < 1)
