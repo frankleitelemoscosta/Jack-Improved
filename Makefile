@@ -1,8 +1,8 @@
 all:
-	gcc ./filesc/main.c ./filesc/mat.c ./filesh/mat.h -lm -o  executavel
+	gcc ./src/main.c ./src/mat.c ./src/mat.h -lm -o  ./build/executavel
 
 clean:
-	rm -rf executavel
+	rm -rf ./build/executavel
 
 run:
-	./executavel
+	./build/executavel

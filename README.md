@@ -51,7 +51,7 @@ Para realizar tal procedimento e para que o programa se tornasse um pouco mais l
 </p>
 
 
-<img src="image/Meme-Homem-Aranha-No-Way-Home.jpg" alt="" style="width: 50%">
+<img src="image/miranha-e-a-ram.png" alt="" style="width: 50%">
 
 <p style = "text-align = justify">
 O ponteiro é uma variável que aponta a uma posição de memória, enquanto uma variável armazena uma posição e o conteúdo armazenado nessa variável, mostrando se mais caro computacionalmente, isso é dito pois a refencia passada da matriz nesse projeto se trata de um ponteiro.
@@ -73,7 +73,7 @@ Inicialmente foi utilizado o srand com a semente "time(0)", o qual recupera o te
 Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu <a href="https://github.com/mpiress/GenerateDataToMaze">algoritmo de geração aleatória de matrizes</a>, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
 </p>
 
-<p>Escolha aleatória para caminhamento em uma matrix(mat)<br>
+<p>Escolha aleatória para caminhamento em uma matrix<br>
 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;parameter&nbsp;&nbsp;==&nbsp;&nbsp;true&nbsp;&nbsp;THEN<br>
 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
@@ -122,8 +122,32 @@ Estas posições são os elementos da matriz e podem ser encontrados com a segui
 
 <img src="image/prova.png" alt="" style="width: 40% ">
 
+<p style = "text-align = justify">
+Agora tendo as posições extraidas a cada interação pela expressão matemática apresentada, e sendo salva na pasta Diferentvet, pode se tratar da maneira de como obter a quantidade de casas não passadas por Jack. Para tal ja que temos as posições por onde Jack passou basta obtermos a quantidade total de elementos menos a quantidade de casas onde ele passou, mas para que fosse desconsiderado as repetições as posições encontradas foram armazenadas em um vetor totalmente preenchido com zeros, onde são inseridos na posição respectiva ao seu valor, e a inserção neste vetor só ocorre se a casa do vetor estiver preenchida com zero, se não for o caso ele não entra no desvio condicional e conta o número de casas onde ele passou, supondo que o arquivo de entrada tenha 3 matrizes, e essas tenham ordem 4 o algoritmo seria:
+</p>
+
+Contagem de casas não visitadas:<br>
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;16&nbsp;&nbsp;STEP<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHILE&nbsp;&nbsp;Counter&nbsp;&nbsp;<=&nbsp;&nbsp;3<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter++<br>
+6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;file&nbsp;&nbsp;=&nbsp;&nbsp;OPEN("Diferentvet/output.data","r")<br>
+7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cleararrey(name)<br>
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;size&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;lixo&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet&nbsp;&nbsp;=&nbsp;&nbsp;ALLOCATE_MEMORY(sizeof(Interger))<br>
+11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
+12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;vet[i]&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+
+<h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
+
+<h2>COMO COMPILAR ESSE PROJETO</h2>
+
 <h2>CONCLUSÃO</h2>
 
+Pode se concluir a partir de todas as informações aqui discorridas, e das soluções as problemáticas apontadas que representam a estruturação do código, que não se faz possível estipular um custo preciso a este algoritmo, visto que a forma de caminhamento pela matriz é indefinida, a cada interação não há como prever com exatidão o que vai acontecer, sendo assim é complexo elaborar um custo computacional, pois não se consegue ao menos prever possiveis situações para supor quais seriam os possíveis comportamentos da manipulação dos dados no decorrer da execução do programa. A única coisa que se pode argumentar a respeito é que esse custo vai estar atrelado a entrada, se a entrada for composta por três matrizes, sendo todas de ordem 5, e tendo elas ao menos 15 casas com "*", as chances seriam maiores de ocorrer o fim de jogo, visto que dessa forma tem se mais de 50% de chance da possibilidade de Jack passar por essas casas perder vidas e o programa encerrar, porem não há como dizer que será assim, pois temos o caminhamento de maneira aleatória, sendo assim pode ocorrer o caso onde nem se chegue perto dessas casas onde estão os perigos.
 <h2>REFERÊNCIAS</h2>
 
 <ul>
