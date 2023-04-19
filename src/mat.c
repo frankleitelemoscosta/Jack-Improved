@@ -425,14 +425,8 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 
 	vet = (int*)malloc(Alocate_Counter * sizeof(int));
 
-	printf("Order: %d\n",*Order);
-
 	//start looping for walking per matrix
 		while(*stop != 1){
-
-			/*printf("Row: [%d]\n",Row);
-			printf("Colunm: [%d]\n",Colunm);*/
-
 			if(*Counter_Houses == 0){
 				//checking if the decision predecessor maked the right
 				while(*stop != 1)
@@ -442,12 +436,11 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 						*stop = 1;
 					}
 					else{
-						printf("Teve de ser redecidido, então teremos mais de um print\n");
 						TheChoose(&Colunm,&Row,Order,false);
 					}
 
 				}
-			//finished
+				//finished
 			}else{
 
 				Current_Colunm = Colunm;
@@ -457,13 +450,13 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 					{
 						TheChoose(&Colunm,&Row,Order,false);
 						if(Matrix[Row][Colunm] != '#')
-								{
-									*stop = 1;
-								}
-								else{
-									Row = Current_Row;
-									Colunm = Current_Colunm;
-								}
+						{
+							*stop = 1;
+						}
+						else{
+							Row = Current_Row;
+							Colunm = Current_Colunm;
+						}
 					}
 					*stop = 0;
 			}
@@ -537,8 +530,6 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 				break;
 			}
 
-			printf("Vidas: %d\n",*lives);
-
 		//for changed the matrix that are in the program
 			if(Row == 0 || Row == (*Order - 1) || Colunm == 0 || Colunm == (*Order - 1))
 			{
@@ -553,7 +544,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 				file = fopen(name_vector,"w");
 				if(file == NULL)
 				{
-					printf("file is not open,não é aqui\n");
+					printf("file is not open,\n");
 					return;
 				}
 

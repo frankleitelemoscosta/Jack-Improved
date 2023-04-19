@@ -140,6 +140,17 @@ Contagem de casas não visitadas:<br>
 11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;vet[i]&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;=&nbsp;&nbsp;vet[&nbsp;i&nbsp;]<br>
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;==&nbsp;&nbsp;0&nbsp;&nbsp;THEN<br>
+17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[index]&nbsp;&nbsp;=&nbsp;&nbsp;index<br>
+18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter_Walking++<br>
+19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br>
+20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;16&nbsp;&nbsp;STEP<br>
+22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QuantitiHouses&nbsp;&nbsp;=&nbsp;&nbsp;tamanho_vet&nbsp;&nbsp;-&nbsp;&nbsp;Counter_Walking<br>
 
 <h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
 
@@ -153,6 +164,7 @@ Pode se concluir a partir de todas as informações aqui discorridas, e das solu
 <ul>
     <li>ChatGPT.
     <li>TH.Cormen,Algoritmos: Teoria e Prática, MIT press,2009, Pag: 7 e 8.
+    <li>N.Ziviane,Projeto de Algoritmos: com implementação em Java e C++,São Paulo,Thonson Learning,2007.
 </ul>
 
 <h2>AUTOR</h2>
