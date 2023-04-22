@@ -154,15 +154,34 @@ Contagem de casas não visitadas:<br>
 
 <h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
 
+<p style = "text-align = justify">
+
+</p>
+
 <h2>COMO COMPILAR ESSE PROJETO</h2>
 
-<h2>CONCLUSÃO</h2>
+![](https://user-images.githubusercontent.com/107070061/226108916-b37c30be-d111-4ec2-9d4a-1e01bd3901ed.gif)
 
-Pode se concluir a partir de todas as informações aqui discorridas, e das soluções as problemáticas apontadas que representam a estruturação do código, que não se faz possível estipular um custo preciso a este algoritmo, visto que a forma de caminhamento pela matriz é indefinida, a cada interação não há como prever com exatidão o que vai acontecer, sendo assim é complexo elaborar um custo computacional, pois não se consegue ao menos prever possiveis situações para supor quais seriam os possíveis comportamentos da manipulação dos dados no decorrer da execução do programa. A única coisa que se pode argumentar a respeito é que esse custo vai estar atrelado a entrada, se a entrada for composta por três matrizes, sendo todas de ordem 5, e tendo elas ao menos 15 casas com "*", as chances seriam maiores de ocorrer o fim de jogo, visto que dessa forma tem se mais de 50% de chance da possibilidade de Jack passar por essas casas perder vidas e o programa encerrar, porem não há como dizer que será assim, pois temos o caminhamento de maneira aleatória, sendo assim pode ocorrer o caso onde nem se chegue perto dessas casas onde estão os perigos.
+<p style = "text-align = justify">
+Como mostra o gif, neste projeto é utilizado o arquivo de diretrizes de comando makefile, para compilar e executar este projeto basta digitar os seguintes comandos no terminal:
+</p>
+
+<ul>
+    <li>make ou make all
+    <li>make run
+</ul>
+
+<p style = "text-align = justify">
+o primeiro comando ao ser executado no terminal pede ao sistema operacional que procure um arquivos dentro da pasta do projeto chamado de Makefile, e assim que encontra como não houve mais nenhuma especificação após ser digitado make ele vai procurar por uma diretriz dentro deste arquivo chamada de all, e executará o comando redigido no campo desta diretriz, na mesma lógica temos o comando make run, porem este comando esta codificado para executar uma diretriz que fará a execução do executável gerado no processo de compilação. E ainda há uma outra diretriz cujo nome é: makeclean, que realiza a limpeza do executável.
+</p>
+
+<h2>CONCLUSÃO</h2>
+<p style = "text-align = justify">
+Pode se concluir a partir de todas as informações aqui discorridas, e das soluções as problemáticas apontadas que representam a estruturação do código, que não se faz possível estipular um custo preciso a este algoritmo, visto que a forma de caminhamento pela matriz é indefinida, a cada interação não há como prever com exatidão o que vai acontecer, sendo assim é complexo elaborar um custo computacional, Segundo <a href = "https://pt.wikipedia.org/wiki/Nivio_Ziviani">Nivio Ziviane</a> a abordagem mais adequada para análise de algoritmos está relacionada a entrada, e análise das operações realizadas com esses dados, porem é muito usual desconsiderar operações aritméticas e considerar apenas laços de repetição e desvios condicionais, mas no cenário destre projeto não é possível dizer quantas vezes a entrada vai interagir nos laços de repetições ou quantas vezes a execução sofrerá um desvio condicional e executará outro bloco de código influenciando no tempo de execução.
+</p>
 <h2>REFERÊNCIAS</h2>
 
 <ul>
-    <li>ChatGPT.
     <li>TH.Cormen,Algoritmos: Teoria e Prática, MIT press,2009, Pag: 7 e 8.
     <li>N.Ziviane,Projeto de Algoritmos: com implementação em Java e C++,São Paulo,Thonson Learning,2007.
 </ul>

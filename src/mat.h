@@ -4,9 +4,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
+#include<math.h>
+#include<string.h>
 #include<time.h>
 #include <unistd.h>
 
+void AlocateMatrix(int *Order,char ***Matrix);
+void Alocatevet(int *Alocate_Counter,int *Counter_auxiliar,int **vet_aux,int **vet);
 void GenerateDiferentFiles(int *Quantitiofmatrix,FILE **file,char **Matrix,int *Order);
 void StartFillingMatrix(int *Order,char **Matrix);
 void WriteMatrixFile(int *counter_matrix,int *Order,char **Matrix,int **vet,int *Couter_auxiliar,int *Alocate_auxiliar);
@@ -15,7 +19,7 @@ void Walking(signed short int StartRow, signed short int SartColunm,int *stop, s
 void PrintMatrix(int *Order,char **Matrix);
 void TheChoose(signed short int *Colunm,signed short int *Row,int *Order,bool parameter);
 void ClearArrey(signed char *name);
-void FillingMatrix(char **Matrix,signed short int *sum, int *Order,int *Counter_matrix, int *QuantitofMatrix);
+void FillingMatrix(char **Matrix, int *Order,int *Counter_matrix, int *QuantitofMatrix);
 void PrintPosition(int *Order,int *QuantitiofMatrix);
 
 #endif

@@ -16,6 +16,7 @@ int main(){
 		signed short int StartColunm;
 		signed short int lives = 10;
 		signed short int sum = 0;
+		char **Matrix; 
 		FILE  *file = fopen("dataset/input.data","r");
 	//finished local variables
 	
@@ -24,47 +25,35 @@ int main(){
 
 		counter_matrix = (int *)malloc(1*sizeof(int));
 
-
 		QuantitiofMatrix = (int*)malloc(1*sizeof(int));
 	//finished alocation
 
-		GetSize(&Order,QuantitiofMatrix,&file);
+	GetSize(&Order,QuantitiofMatrix,&file);
 
-		char **Matrix = (char**)malloc(Order * sizeof(char*));//declarate the matrix, and alocate rows
+	AlocateMatrix(&Order,&Matrix);
 
-		printf("Order: %d\n",Order);
+	GenerateDiferentFiles(QuantitiofMatrix,&file,Matrix,&Order);
 
-		//allocate colunms
-			for (int i = 0; i < Order; i++) 
-			{
-				Matrix[i] = (char*)malloc(Order * sizeof(char));
-			}
+	printf("What Row you wanna start?");
+	scanf("%hd",&StartRow);
 
-		GenerateDiferentFiles(QuantitiofMatrix,&file,Matrix,&Order);
+	printf("What Colunm you wanna start?");
+	scanf("%hd",&StartColunm);
 
-		printf("Order: %d\n",Order);
+	Walking(StartRow,StartColunm,&stop,&lives,&sum,&Order,counter_matrix,QuantitiofMatrix,&Counter_danger,&Counter_Houses,&sumOfItems,Matrix);
 
-		printf("(%d)\n",sum);
+	printf("The end!, you died\n");
 
-		printf("What Row you wanna start?");
-		scanf("%hd",&StartRow);
+	printf("Quantas CASAS foram PERCORRIDAS ao todo?: %d\n",Counter_Houses);
+	printf("Quantos PERIGOS foram ENFRENTADOS ao todo?: %d\n",Counter_danger);
+	printf("Qual a Soma dos ELEMENTOS ao todo?: %d\n",sumOfItems);
 
-		printf("What Colunm you wanna start?");
-		scanf("%hd",&StartColunm);
-
-		Walking(StartRow,StartColunm,&stop,&lives,&sum,&Order,counter_matrix,QuantitiofMatrix,&Counter_danger,&Counter_Houses,&sumOfItems,Matrix);
-
-		printf("The end!, you died\n");
-
-		printf("Quantas CASAS foram PERCORRIDAS ao todo?: %d\n",Counter_Houses);
-		printf("Quantos PERIGOS foram ENFRENTADOS ao todo?: %d\n",Counter_danger);
-		printf("Qual a Soma dos ELEMENTOS ao todo?: %d\n",sumOfItems);
-
-		PrintPosition(&Order,QuantitiofMatrix);
+	PrintPosition(&Order,QuantitiofMatrix);
 
 	free(counter);
 	free(counter_matrix);
 	free(QuantitiofMatrix);
+	free(Matrix);
 
 	return 0;
 }
