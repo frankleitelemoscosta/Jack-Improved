@@ -153,17 +153,17 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 		signed char name_vector[30] = "Diferentvet/output";
 		signed int Counter = 1;
 		int *vet;
-		int tamanho;
+		int size;
 		int lixo;
-		int tamanho_vet = pow(*Order,2);
-		int vet_check[tamanho_vet];
+		int size_vet = pow(*Order,2);
+		int vet_check[size_vet];
 		int index;
 		int Counter_Walking = 0;
 		int QuantitiHouses = 0;
 	//end local variables
 
 	//for filling vet for check
-		for(int i = 0; i < tamanho_vet; i++)
+		for(int i = 0; i < size_vet; i++)
 		{
 			vet_check[i] = 0;
 		}	
@@ -184,13 +184,13 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 		}
 
 		//read the file with a array
-			fscanf(file,"%d",&tamanho);
+			fscanf(file,"%d",&size);
 
 			fscanf(file,"%d",&lixo);
 
-			vet = (int*)malloc(tamanho * sizeof(int));
+			vet = (int*)malloc(size * sizeof(int));
 
-			for (int i = 0; i < tamanho; i++)
+			for (int i = 0; i < size; i++)
 			{
 				fscanf(file,"%d",&vet[i]);
 			}
@@ -198,7 +198,7 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 
 		printf("\n");
 
-		for(int i = 0; i < tamanho; i++)
+		for(int i = 0; i < size; i++)
 		{
 			index = vet[i];
 
@@ -213,13 +213,13 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 		free(vet);
 
 		//for clean the vet_chek
-			for(int i = 0; i < tamanho_vet; i++)
+			for(int i = 0; i < size_vet; i++)
 			{
 				vet_check[i] = 0;
 			}
 		//finished
 
-		QuantitiHouses = tamanho_vet - Counter_Walking;
+		QuantitiHouses = size_vet - Counter_Walking;
 
 		printf("As CASAS que NÃO foram PASSADAS da matrix [%d] são: %d\n",Counter, QuantitiHouses);
 
@@ -379,11 +379,6 @@ void TheChoose(signed short int *Colunm,signed short int *Row, int *Order,bool p
 	*Row = number_Row + *Row;
 
 	}
-
-	
-
-	
-
 
 	//for the colunm or row don´t have positions that unexist
 		if(*Colunm < 0)

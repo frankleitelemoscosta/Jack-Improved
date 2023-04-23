@@ -70,29 +70,38 @@ Inicialmente foi utilizado o srand com a semente "time(0)", o qual recupera o te
 </p>
 
 <p style = "text-align = justify">
-Em uma segunda abordagem resolvi utilizar uma estratégia similar a utilizada por Michel pires em seu <a href="https://github.com/mpiress/GenerateDataToMaze">algoritmo de geração aleatória de matrizes</a>, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
+Em uma segunda abordagem foi utilizado uma estratégia similar a utilizada por Michel pires em seu <a href="https://github.com/mpiress/GenerateDataToMaze">algoritmo de geração aleatória de matrizes</a>, onde ele usa um intervalo maior para decidir entre três opções de elementos para compor uma casa de uma matrix, mas o que trouxe para esse projeto foi a ideia de ter um intervalo maior, dando um campo de escolha maior para que se tornassem maiores as possibilidades de cair em 1, 0 ou -1, o pseudocódigo a seguir mostra isso:
 </p>
 
 <p>Escolha aleatória para caminhamento em uma matrix<br>
 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;parameter&nbsp;&nbsp;==&nbsp;&nbsp;true&nbsp;&nbsp;THEN<br>
 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,6)<br>
-4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
-5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br>
-6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF choosen&nbsp;&nbsp;>&nbsp;&nbsp;5&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;12&nbsp;&nbsp;THEN<br>
-7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm = 1<br>
-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;&nbsp;IF&nbsp;&nbsp;choosen&nbsp;&nbsp;>&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;6&nbsp;&nbsp;THEN<br>
-9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;-1<br>
-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
-11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
-12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br>
-13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF choosen&nbsp;&nbsp;>&nbsp;&nbsp;5&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;12&nbsp;&nbsp;THEN<br>
-14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;1<br>
-15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;&nbsp;IF&nbsp;&nbsp;choosen&nbsp;&nbsp;>&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;6&nbsp;&nbsp;THEN<br>
-16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;-1<br>
-17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
-18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
-19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br></p>
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Row&nbsp;&nbsp;=&nbsp;&nbsp;number_Row<br>
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Colunm&nbsp;&nbsp;=&nbsp;&nbsp;number_Colunm<br>
+6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br>
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF choosen&nbsp;&nbsp;>&nbsp;&nbsp;5&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;12&nbsp;&nbsp;THEN<br>
+9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm = 1<br>
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;&nbsp;IF&nbsp;&nbsp;choosen&nbsp;&nbsp;>&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;6&nbsp;&nbsp;THEN<br>
+11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;-1<br>
+12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Colunm&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choosen&nbsp;&nbsp;=&nbsp;&nbsp;RANDOM(0,19)<br>
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF choosen&nbsp;&nbsp;>&nbsp;&nbsp;5&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;12&nbsp;&nbsp;THEN<br>
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;1<br>
+17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE&nbsp;&nbsp;IF&nbsp;&nbsp;choosen&nbsp;&nbsp;>&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;choosen&nbsp;&nbsp;<&nbsp;&nbsp;6&nbsp;&nbsp;THEN<br>
+18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;-1<br>
+19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE<br>
+20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_Row&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHILE&nbsp;&nbsp;Stop&nbsp;&nbsp;!=&nbsp;&nbsp;1<br>
+22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;number_colunm&nbsp;&nbsp;==&nbsp;&nbsp;0&nbsp;&nbsp;AND&nbsp;&nbsp;number_row&nbsp;&nbsp;==&nbsp;&nbsp;0<br>
+23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number_row&nbsp;&nbsp;=&nbsp;&nbsp;1<br>
+24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br></p>
+
+<p style = "text-align = justify">
+Mas essa implementação não faz com que a escolha se torne totalmente aleatória, se percebe isso nos resultados finais onde se observa repetições nas posições em que Jack passa, porem isso advem da função rand e não há como ser controlado, pois se trata de procedimentos internos da linguagem C, que não podem ser alterados.
+</p>
 
 <p style = "text-align = justify">
 O primeiro if demonstra uma regra que foi estabelecida para que Jack conseguisse percorrer todas as matrizes sem ficar preso a necessidade de ter de zerar a corrente matriz onde ele está, então a regra é: quando ele chega as extremidades de uma matriz ele é teletransportado para outra matriz do arquivo de entrada, e uma posição da matriz é escolhida de forma aleatória.Como mostra a imagem:
@@ -128,28 +137,28 @@ Agora tendo as posições extraidas a cada interação pela expressão matemáti
 
 Contagem de casas não visitadas:<br>
 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;16&nbsp;&nbsp;STEP<br>
-2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHILE&nbsp;&nbsp;Counter&nbsp;&nbsp;<=&nbsp;&nbsp;3<br>
 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter++<br>
 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;file&nbsp;&nbsp;=&nbsp;&nbsp;OPEN("Diferentvet/output.data","r")<br>
-7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cleararrey(name)<br>
-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;size&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
-9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;lixo&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet&nbsp;&nbsp;=&nbsp;&nbsp;ALLOCATE_MEMORY(sizeof(Interger))<br>
-11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
-12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;vet[i]&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
-13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
-14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
-15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;=&nbsp;&nbsp;vet[&nbsp;i&nbsp;]<br>
-16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;==&nbsp;&nbsp;0&nbsp;&nbsp;THEN<br>
-17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[index]&nbsp;&nbsp;=&nbsp;&nbsp;index<br>
-18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter_Walking++<br>
-19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br>
-20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
-21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;16&nbsp;&nbsp;STEP<br>
-22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
-23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;size&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;lixo&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet&nbsp;&nbsp;=&nbsp;&nbsp;ALLOCATE_MEMORY(sizeof(Interger))<br>
+10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
+11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;&nbsp;vet[i]&nbsp;&nbsp;=&nbsp;&nbsp;READ_INTERGER(file)<br>
+12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;size&nbsp;&nbsp;STEP<br>
+14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;=&nbsp;&nbsp;vet[&nbsp;i&nbsp;]<br>
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;==&nbsp;&nbsp;0&nbsp;&nbsp;THEN<br>
+16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[index]&nbsp;&nbsp;=&nbsp;&nbsp;index<br>
+17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter_Walking++<br>
+18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;IF<br>
+19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOR&nbsp;&nbsp;i&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;&nbsp;TO&nbsp;&nbsp;16&nbsp;&nbsp;STEP<br>
+21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vet_check[&nbsp;i&nbsp;]&nbsp;&nbsp;=&nbsp;&nbsp;0<br>
+22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;&nbsp;FOR<br>
+23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cleararrey(name)<br>
 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QuantitiHouses&nbsp;&nbsp;=&nbsp;&nbsp;tamanho_vet&nbsp;&nbsp;-&nbsp;&nbsp;Counter_Walking<br>
 
 <h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
