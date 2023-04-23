@@ -159,17 +159,13 @@ Contagem de casas não visitadas:<br>
             <td>
                <div>
                     <br>
-                    <br>
-                    RAM
-                    <br>
+                    <p class="sizeText color">RAM</p>
                     <br>
                </div> 
             </td>
             <td >
                 <br>
-                <br>
                     <p class="sizeText color">8Gb</p>
-                <br>
                 <br>
             </td>
         </tr>
@@ -177,35 +173,27 @@ Contagem de casas não visitadas:<br>
             <td style="width: 20%;">
                 <p class="sizeText color">
                     <br>
-                    <br>
-                    SO
-                    <br>
+                    <p class="sizeText color">SO</p>
                     <br>
                 </p>
             </td>
             <td >
                 <br>
-                <br>
                     <p class="sizeText color">Linux Ubuntu v20.04, 64bits</p>
-                <br>
                 <br>
             </td>
         </tr>
         <tr align="center">
             <td style="width: 20%;">
                 <br>
-                <br>
                     <p class="sizeText color">    
                         CPU
                     </p>
                 <br>
-                <br>
             </td>
             <td >
                 <br>
-                <br>
                     <p class="sizeText color">Intel core i5 11° geração 2,40GHz</p>
-                <br>
                 <br>
             </td>
         </tr>
