@@ -8,7 +8,7 @@
 Neste projeto deve se encontrar resolução para a seguinte situação: Um garoto está perdido em um labirinto, ande de forma aleatória pelas casas de matrizes(estas representam o labirinto) com um garoto até consumir tudo que é possível, ou até que ele morra tentando pegar tudo, não importa se no resultado final o garoto sobreviveu ou não.
 </p>
 
-<h2>LÓGICA UTILIZADA</h2>
+<h2>DESEVOLVIMENTO DO PROBLEMA</h2>
 
 <p style = "text-align = justify">
 Para resolver o problema foi necessário trazer soluções para os seguintes problemas:
@@ -155,7 +155,13 @@ Contagem de casas não visitadas:<br>
 <h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
 
 <p style = "text-align = justify">
+Entrada:<br>
+<img src="image/input.png" alt="" style="width: 30% ">
 
+Saída:<br>
+<img src="image/output.png" alt="" style="width: 80% "><br><br>
+A primeira imagem se trata do input.data, que contem todas as matrizes de entrada nesse caso tendo três matrizes ao todo sendo todas elas de mesmo tamanho e quadraticas, tamanho esse que nesse caso seria 7x7, porem o programa foi feito para receber matrizes quadraticas de qualquer ordem, e sejam elas quantas matrizes forem, a questão nesse cenário é quantos dados a arquitetura será capaz de receber e processar.<br>
+A segunda imagem se trata das informações fornecidas a respeito do percurso feito dentro das matrizes de entrada, sendo a primeira o tamanho do percurso, ou seja a soma de todas as casas por onde o garoto Jack andou, contando tambem as repetidas.
 </p>
 
 <h2>COMO COMPILAR ESSE PROJETO</h2>
