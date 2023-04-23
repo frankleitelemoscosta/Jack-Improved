@@ -114,18 +114,6 @@ void GetSize(int *Order, int *QuantitiofMatrix,FILE **file)
 	//finished
 }
 
-void PrintMatrix(int *Order,char **Matrix)
-{
-	for (int i = 0; i < *Order; i++)
-	{
-		for (int j = 0; j < *Order; j++)
-		{
-			printf(" [%c]",Matrix[i][j]);
-		}
-		printf("\n");
-	}
-}
-
 void ClearArrey(signed char *name){
 
  for (int i = 0; name[i] != '\0'; i++) {
@@ -162,7 +150,7 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 	//local variables
 		FILE *file;
 		signed char letter[5];
-		signed char name_vector[30] = "Diferentvectors/output";
+		signed char name_vector[30] = "Diferentvet/output";
 		signed int Counter = 1;
 		int *vet;
 		int tamanho;
@@ -243,7 +231,7 @@ void PrintPosition(int *Order,int *QuantitiofMatrix)
 		Counter++;
 		ClearArrey(name_vector);
 
-		strcpy(name_vector,"Diferentvectors/output");
+		strcpy(name_vector,"Diferentvet/output");
 	}
 
 }
@@ -423,6 +411,95 @@ void TheChoose(signed short int *Colunm,signed short int *Row, int *Order,bool p
 	
 }//end function
 
+void Readvet(int *Counter_matrix_change,int *QuantitofMatrix,int *Counter_matrix,int *Alocate_Counter, int **vet,int *Counter_auxiliar)
+{
+
+	FILE *file;
+	signed char letter[5];
+	signed char name_vector[30] = "Diferentvet/output";
+
+
+	//for write new files for operate matrix
+			sprintf(letter,"%d",*Counter_matrix);
+			strcat(name_vector,letter);
+			strcat(name_vector,".data");
+	//finished
+
+
+		if(*Counter_matrix_change > (*QuantitofMatrix - 1)){
+			//open file
+				file = fopen(name_vector,"r");
+				if(file == NULL){
+					printf("file is not open?\n");
+					return; 
+				}
+			//end open file
+			for (int i = 0 ; i < 1 ; i++)
+			{
+				fscanf(file,"%d",Counter_auxiliar);
+				fscanf(file,"%d",Alocate_Counter);
+			}
+		
+			*vet = (int*)malloc(*Alocate_Counter * sizeof(int));
+
+			for (int i = 0 ; i < *Counter_auxiliar ; i++)
+			{
+				fscanf(file,"%d",&(*vet)[i]);
+				
+			}
+		}else{
+			*Alocate_Counter = 1;
+			*Counter_auxiliar = 0;
+			*vet = (int*)malloc(*Alocate_Counter * sizeof(int));
+		}
+
+	ClearArrey(name_vector);//clear array for write again
+
+	strcpy(name_vector,"Diferentvet/output");
+
+	fclose(file);
+}
+
+void Writevet(int *Counter_matrix,int *Alocate_Counter, int **vet,int *Counter_auxiliar)
+{
+	FILE *file;
+	signed char letter[5];
+	signed char name_vector[30] = "Diferentvet/output";
+
+	sprintf(letter,"%d",*Counter_matrix);
+	strcat(name_vector,letter);
+	strcat(name_vector,".data");
+
+	file = fopen(name_vector,"w");
+	if(file == NULL)
+	{
+		printf("file is not open,\n");
+		return;
+	}
+
+	for (int i = 0 ; i < 1 ; i++)
+	{
+		fprintf(file,"%d\n",*Counter_auxiliar);
+		fprintf(file,"%d\n",*Alocate_Counter);
+	}
+
+	//write array in the file
+	for (int i = 0 ; i < *Alocate_Counter ; i++)
+	{
+		fprintf(file,"%d\n",(*vet)[i]);
+	}
+	//end write array
+
+	fclose(file);
+
+	*vet = (int*)realloc(*vet,0);//free memory
+
+	ClearArrey(name_vector);//clear array for write again
+
+	strcpy(name_vector,"Diferentvet/output");
+
+}
+
 void Walking(signed short int StartRow, signed short int StartColunm,int *stop, signed short int *lives,signed short int *sum, int *Order,int *Counter_matrix, int *QuantitofMatrix,int *Counter_danger, int *Counter_Houses,int *sumOfItems,char **Matrix)
 {
 	//local variables 
@@ -438,7 +515,7 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 		int *vet_aux;
 		FILE *file;
 		signed char letter[5];
-		signed char name_vector[30]="Diferentvectors/output";
+		signed char name_vector[30]="Diferentvet/output";
 		int variable_aux;
 		int Counter_matrix_change = 0;
 	//finished
@@ -536,80 +613,12 @@ void Walking(signed short int StartRow, signed short int StartColunm,int *stop, 
 
 				WriteMatrixFile(Counter_matrix,Order,Matrix,&vet,&Counter_auxiliar,&Alocate_Counter);
 
-				sprintf(letter,"%d",*Counter_matrix);
-				strcat(name_vector,letter);
-				strcat(name_vector,".data");
-
-				file = fopen(name_vector,"w");
-				if(file == NULL)
-				{
-					printf("file is not open,\n");
-					return;
-				}
-
-				for (int i = 0 ; i < 1 ; i++)
-				{
-					fprintf(file,"%d\n",Counter_auxiliar);
-					fprintf(file,"%d\n",Alocate_Counter);
-				}
-
-				//write array in the file
-				for (int i = 0 ; i < Alocate_Counter ; i++)
-				{
-					fprintf(file,"%d\n",vet[i]);
-				}
-				//end write array
-
-				fclose(file);
-
-				vet = (int*)realloc(vet,0);//free memory
-
-				ClearArrey(name_vector);//clear array for write again
-
-				strcpy(name_vector,"Diferentvectors/output");
-
+				Writevet(Counter_matrix,&Alocate_Counter,&vet,&Counter_auxiliar);
+				
 				FillingMatrix(Matrix,Order,Counter_matrix,QuantitofMatrix);
 
-				//for write new files for operate matrix
-						sprintf(letter,"%d",*Counter_matrix);
-						strcat(name_vector,letter);
-						strcat(name_vector,".data");
-				//finished
-
-
-					if(Counter_matrix_change > (*QuantitofMatrix - 1)){
-						//open file
-							file = fopen(name_vector,"r");
-							if(file == NULL){
-								printf("file is not open?\n");
-								return; 
-							}
-						//end open file
-						for (int i = 0 ; i < 1 ; i++)
-						{
-							fscanf(file,"%d",&Counter_auxiliar);
-							fscanf(file,"%d",&Alocate_Counter);
-						}
-					
-						vet = (int*)malloc(Alocate_Counter * sizeof(int));
-
-						for (int i = 0 ; i < Counter_auxiliar ; i++)
-						{
-							fscanf(file,"%d",&variable_aux);
-							vet[i] = variable_aux;
-						}
-					}else{
-						Alocate_Counter = 1;
-						Counter_auxiliar = 0;
-						vet = (int*)malloc(Alocate_Counter * sizeof(int));
-					}
-
-				ClearArrey(name_vector);//clear array for write again
-
-				strcpy(name_vector,"Diferentvectors/output");
-
-				fclose(file);
 				
+				Readvet(&Counter_matrix_change,QuantitofMatrix,Counter_matrix,&Alocate_Counter,&vet,&Counter_auxiliar);
 
 				//checking if the decision predecessor maked the right
 					while(*stop != 1)
