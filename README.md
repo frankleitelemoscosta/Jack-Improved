@@ -154,7 +154,18 @@ Contagem de casas não visitadas:<br>
 
 <h2>EXEMPLO DE ENTRADA E SAÍDA</h2>
 
+<h3>MÁQUINAS DE TESTE DESTE PROJETO</h3>
+
 <table style="width: 100%;" border="1">
+        <tr align="center" >
+            <td colspan="2">
+                <div>
+                        <br>
+                        <p class="sizeText color">Notebook 550XDA Sansung</p>
+                        <br>        
+                </div>
+            </td>
+        <tr>
         <tr align="center">
             <td>
                <div>
@@ -165,7 +176,7 @@ Contagem de casas não visitadas:<br>
             </td>
             <td >
                 <br>
-                    <p class="sizeText color">8Gb</p>
+                    <p class="sizeText color">8Gb DDR4</p>
                 <br>
             </td>
         </tr>
@@ -198,6 +209,61 @@ Contagem de casas não visitadas:<br>
             </td>
         </tr>
     </table>
+    <br>
+    <table style="width: 100%;" border="1">
+        <tr align="center" >
+            <td colspan="2">
+                <div>
+                        <br>
+                        <p class="sizeText color">Desktop</p>
+                        <br>        
+                </div>
+            </td>
+        <tr>
+        <tr align="center">
+            <td>
+               <div>
+                    <br>
+                    <p class="sizeText color">RAM</p>
+                    <br>
+               </div> 
+            </td>
+            <td >
+                <br>
+                    <p class="sizeText color">8Gb DDR4</p>
+                <br>
+            </td>
+        </tr>
+        <tr align="center">
+            <td style="width: 20%;">
+                <p class="sizeText color">
+                    <br>
+                    <p class="sizeText color">SO</p>
+                    <br>
+                </p>
+            </td>
+            <td >
+                <br>
+                    <p class="sizeText color">Windows 10, 64bits</p>
+                <br>
+            </td>
+        </tr>
+        <tr align="center">
+            <td style="width: 20%;">
+                <br>
+                    <p class="sizeText color">    
+                        CPU
+                    </p>
+                <br>
+            </td>
+            <td >
+                <br>
+                    <p class="sizeText color">Intel core i5 11° geração 2,40GHz</p>
+                <br>
+            </td>
+        </tr>
+    </table>
+
 
 <p style = "text-align = justify">
 Entrada:<br>
